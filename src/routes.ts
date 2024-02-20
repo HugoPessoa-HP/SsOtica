@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express'
-import { GetVendasMuquicaba } from './controllers/muquicaba/GetVendasController'
+import { GetVendasMuquicaba } from './controllers/Muquicaba_01/GetVendasController'
 
 const router = Router();
 

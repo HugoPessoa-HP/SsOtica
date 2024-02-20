@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetVendasMuquicaba_Service } from "../../services/muquicaba/GetVendasService";
+import { GetVendasMuquicaba_Service } from "../../services/Muquicaba_01/GetVendasService";
 
 class GetVendasMuquicaba {
     async ex(req: Request, res: Response){

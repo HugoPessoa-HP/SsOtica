@@ -1,17 +1,17 @@
-var axios = require('axios')
+import axios from 'axios';
 
 interface Valores{
     nome: String,
-    numero: String,
+    numeroMudado: String,
     email: String,
 }
 
 class SalvarVendas{
-    async salvarVendas({nome, numero, email}: Valores){
-    await axios.post('https://sheetdb.io/api/v1/bo6z9p6sxriyi',{
+    async salvarVendas({nome, numeroMudado, email}: Valores){
+    await axios.post('https://sheetdb.io/api/v1/bo6z9p6sxriyi', {
         "data": {
             "nome": nome,
-            "numero": numero,
+            "numero": numeroMudado,
             "email": email
         }
     }, {
@@ -20,7 +20,6 @@ class SalvarVendas{
             "password": "zaf3rnvarz6a5ei61jth"
         }
     })
-    return console.log("Feito");
  }
 }
 

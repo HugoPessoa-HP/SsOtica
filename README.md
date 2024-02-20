@@ -5,7 +5,7 @@ $ npm init
 
 // Para configurar o servidor precisaremos da biblioteca express
 
-$ npm install express 
+$ npm install express
 
 // Instalar o Typescript para desenvolvimento do projeto
 
@@ -13,7 +13,7 @@ $ npm install typescript -D
 
 // Instalar tipagens do express para auxiliar o Desenvolvimento (facilitar)
 
-$ npm install @types/express -D 
+$ npm install @types/express -D
 
 // Para rodar o projeto com Typescript
 
@@ -45,3 +45,7 @@ $ npm install mongoose
 $ npm install path
 
 $ npm install morgan 
+
+// Instalar a biblioteca moment para manipulação de data
+
+$ 
