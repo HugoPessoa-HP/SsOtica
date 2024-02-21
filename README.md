@@ -48,4 +48,8 @@ $ npm install morgan
 
 // Instalar a biblioteca moment para manipulação de data
 
-$ 
+$ npm install moment
+
+// Instalação de biblioteca excel
+
+$ npm install --save exceljs

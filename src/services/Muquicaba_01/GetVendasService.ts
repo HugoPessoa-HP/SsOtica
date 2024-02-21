@@ -5,6 +5,11 @@ import moment from 'moment'
 class GetVendasMuquicaba_Service{
     async execute(){
 
+        const ExcelJS = require('exceljs');
+        const workbook = new ExcelJS.Workbook();
+
+        const sheet = workbook.addWorksheet('Relatorio')
+
         const dataAtual = await moment().format('YYYY-MM-DD');
         console.log(dataAtual);
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
@@ -15,27 +20,57 @@ class GetVendasMuquicaba_Service{
         const lengthData = data.length;
         const vendasSalvar = await new SalvarVendas();
 
-        let i;
+        sheet.columns = [
+            { header: 'nome', key: 'nome' },
+            { header: 'numero', key: 'numero' },
+            { header: 'email', key:'email' }
+        ]
+      
+        var nomeArray = [];
+        var numeroArray = [];
+        var emailArray = [];
 
-        for(i = 0; i < lengthData; i++){
-            var nome = await data[i].cliente.nome;
-            var numero = await data[i].cliente.telefones;
-            var values = await Object.values(numero[0]);
-            var numeroMudado = JSON.stringify(values);
-            numeroMudado = await numeroMudado.replace(/\D/g,'');
-            var email = await data[i].valor_liquido;
+        for(let i = 0; i < lengthData; i++){
+            var nomeV = await data[i].cliente.nome;
+            nomeV = await JSON.stringify(nomeV);
+            await nomeArray.push(nomeV);
 
-            await console.log(numeroMudado)
+            var numeroV = await data[i].cliente.telefones;
+            var values = await Object.values(numeroV[0]);
+            numeroV = await JSON.stringify(values);
+            numeroV = await numeroV.replace(/\D/g,'');
+            await numeroArray.push(numeroV);
 
-        
-        vendasSalvar.salvarVendas({
+            var emailV = await data[i].valor_liquido;
+            emailV = await JSON.stringify(emailV);
+            await emailArray.push(emailV);
+
+            sheet.addRow({
+                nome: nomeArray[i],
+                numero: numeroArray[i],
+                email: emailArray[i]
+            })
+        /*vendasSalvar.salvarVendas({
                 nome,
                 numeroMudado,
                 email,
             });
-        
+        */
+
         }
-        
+        sheet.workbook.xlsx.writeFile(`Relatorio-${dataAnterior}.xlsx`)
+/*        var matrizz = [[]];
+        for(let i=0; i < lengthData; i++){
+            for(let j=0; j < 1; j++){
+                if(j == 0){ 
+                    matrizz[i][j] <= nomeArray[i];
+                }else if(j == 1){
+                    matrizz[i][j] <= emailArray[i];
+                }
+            }
+        }
+        console.log(matrizz)
+*/        
         console.log(lengthData);
         return vendas.data;
     }
