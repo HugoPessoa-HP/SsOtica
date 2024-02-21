@@ -53,3 +53,11 @@ $ npm install moment
 // Instalação de biblioteca excel
 
 $ npm install --save exceljs
+
+// Instalar tsup para fazer o biuld da aplicação 
+
+$ npm install tsup
+
+Instalar Tsx para rodar a aplicação
+
+$ npm install tsx
