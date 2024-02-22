@@ -52,7 +52,8 @@ class GetMuquicabaControllerVendas {
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
         sheet.workbook.xlsx.writeFile(`Muquicaba-Relatório-${dataAnterior}.xlsx`)
-        return res.json(data)
+        return res.json(data);
+        console.log("Relatório Criado")
     }
 }
 

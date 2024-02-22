@@ -119,6 +119,7 @@ var GetMuquicabaControllerVendas = class {
       const dataAnterior = yield (0, import_moment2.default)().subtract(1, "days").format("YYYY-MM-DD");
       sheet.workbook.xlsx.writeFile(`Muquicaba-Relat\xF3rio-${dataAnterior}.xlsx`);
       return res.json(data);
+      console.log("Relat\xF3rio Criado");
     });
   }
 };
