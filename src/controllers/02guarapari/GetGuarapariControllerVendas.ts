@@ -10,7 +10,7 @@ class GetGuarapariControllerVendas {
 
         const data = await vendasGuarapari.data;
         const lengthData = data.length;
-
+        console.log(data);
         // Criação da Planilha
         const ExcelJS = require('exceljs');
         const workbook = new ExcelJS.Workbook();
