@@ -1,8 +1,8 @@
 import { api } from "../../API";
 import { SalvarVendas } from "../../API-Google-Sheets";
-import moment from 'moment'
+import moment from 'moment';
 
-class GetVendasMuquicaba_Service{
+class GetVendas_Service{
     async execute(){
 
         const ExcelJS = require('exceljs');
@@ -10,10 +10,7 @@ class GetVendasMuquicaba_Service{
 
         const sheet = workbook.addWorksheet('Relatorio')
 
-        const dataAtual = await moment().format('YYYY-MM-DD');
-        console.log(dataAtual);
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        console.log(dataAnterior);
         const vendas = await api.get(`33879704000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
 
         const data = await vendas.data;
@@ -26,7 +23,7 @@ class GetVendasMuquicaba_Service{
             { header: 'email', key:'email' }
         ]
       
-        var nomeArray = [];
+/*      var nomeArray = [];
         var numeroArray = [];
         var emailArray = [];
 
@@ -50,7 +47,7 @@ class GetVendasMuquicaba_Service{
                 numero: numeroArray[i],
                 email: emailArray[i]
             })
-        /*vendasSalvar.salvarVendas({
+          vendasSalvar.salvarVendas({
                 nome,
                 numeroMudado,
                 email,
@@ -58,8 +55,8 @@ class GetVendasMuquicaba_Service{
         */
 
         }
-        sheet.workbook.xlsx.writeFile(`Relatorio-${dataAnterior}.xlsx`)
-/*        var matrizz = [[]];
+        //sheet.workbook.xlsx.writeFile(`Relatorio-${dataAnterior}.xlsx`)
+/*       var matrizz = [[]];
         for(let i=0; i < lengthData; i++){
             for(let j=0; j < 1; j++){
                 if(j == 0){ 
@@ -68,12 +65,12 @@ class GetVendasMuquicaba_Service{
                     matrizz[i][j] <= emailArray[i];
                 }
             }
-        }
-        console.log(matrizz)
-*/        
-        console.log(lengthData);
-        return vendas.data;
+        } */
+        //console.log(matrizz)
+        
+        //console.log(lengthData);
+        //return vendas.data;
     }
 }
 
-export { GetVendasMuquicaba_Service }
+export { GetVendas_Service }
