@@ -1,8 +1,7 @@
 import { api } from "../../API";
-import { SalvarVendas } from "../../API-Google-Sheets";
 import moment from 'moment';
 
-class GetVendas_Service{
+class GetMuquicabaVendas_Service{
     async execute(){
 
         const ExcelJS = require('exceljs');
@@ -15,7 +14,6 @@ class GetVendas_Service{
 
         const data = await vendas.data;
         const lengthData = data.length;
-        const vendasSalvar = await new SalvarVendas();
 
         sheet.columns = [
             { header: 'nome', key: 'nome' },
@@ -23,7 +21,7 @@ class GetVendas_Service{
             { header: 'email', key:'email' }
         ]
       
-/*      var nomeArray = [];
+        var nomeArray = [];
         var numeroArray = [];
         var emailArray = [];
 
@@ -47,30 +45,13 @@ class GetVendas_Service{
                 numero: numeroArray[i],
                 email: emailArray[i]
             })
-          vendasSalvar.salvarVendas({
-                nome,
-                numeroMudado,
-                email,
-            });
-        */
 
         }
-        //sheet.workbook.xlsx.writeFile(`Relatorio-${dataAnterior}.xlsx`)
-/*       var matrizz = [[]];
-        for(let i=0; i < lengthData; i++){
-            for(let j=0; j < 1; j++){
-                if(j == 0){ 
-                    matrizz[i][j] <= nomeArray[i];
-                }else if(j == 1){
-                    matrizz[i][j] <= emailArray[i];
-                }
-            }
-        } */
-        //console.log(matrizz)
+        sheet.workbook.xlsx.writeFile(`Relatorio-${dataAnterior}.xlsx`)
         
-        //console.log(lengthData);
-        //return vendas.data;
+        console.log(lengthData);
+        return vendas;
     }
 }
 
-export { GetVendas_Service }
+export { GetMuquicabaVendas_Service }

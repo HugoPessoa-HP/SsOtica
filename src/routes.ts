@@ -1,8 +1,9 @@
 import { Router, Request, Response } from 'express'
-import { GetVendas } from './controllers/Muquicaba_01/GetVendasController'
+import { GetVendas } from './controllers/Vendas/GetVendasController'
 
 const router = Router();
 
-router.get('/vendas', new GetVendas().ex)
+router.get('/vendasMuquicaba', new GetMuquicaba().ex)
+router.get('/venddaGuarapari', new getGuarapari().ex)
 
 export { router }
