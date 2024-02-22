@@ -66,43 +66,30 @@ var api = import_axios.default.create({
   }
 });
 
-// src/API-Google-Sheets.ts
-var import_axios2 = __toESM(require("axios"));
-var SalvarVendas = class {
-  salvarVendas(_0) {
-    return __async(this, arguments, function* ({ nome, numeroMudado, email }) {
-      yield import_axios2.default.post("https://sheetdb.io/api/v1/bo6z9p6sxriyi", {
-        "data": {
-          "nome": nome,
-          "numero": numeroMudado,
-          "email": email
-        }
-      }, {
-        "auth": {
-          "username": "ywlesyn2",
-          "password": "zaf3rnvarz6a5ei61jth"
-        }
-      });
+// src/services/01muquicaba/GetMuquicabaServiceVendas.ts
+var import_moment = __toESM(require("moment"));
+var GetMuquicabaVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const vendas = yield api.get(`33879704000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
     });
   }
 };
 
-// src/services/Muquicaba_01/GetVendasService.ts
-var import_moment = __toESM(require("moment"));
-var GetVendasMuquicaba_Service = class {
-  execute() {
+// src/controllers/01muquicaba/GetMuquicabaControllerVendas.ts
+var import_moment2 = __toESM(require("moment"));
+var GetMuquicabaControllerVendas = class {
+  ex(req, res) {
     return __async(this, null, function* () {
+      const getMuquicaba = new GetMuquicabaVendas_Service();
+      const vendasMuquicaba = yield getMuquicaba.execute();
+      const data = yield vendasMuquicaba.data;
+      const lengthData = data.length;
       const ExcelJS = require("exceljs");
       const workbook = new ExcelJS.Workbook();
       const sheet = workbook.addWorksheet("Relatorio");
-      const dataAtual = yield (0, import_moment.default)().format("YYYY-MM-DD");
-      console.log(dataAtual);
-      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
-      console.log(dataAnterior);
-      const vendas = yield api.get(`33879704000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
-      const data = yield vendas.data;
-      const lengthData = data.length;
-      const vendasSalvar = yield new SalvarVendas();
       sheet.columns = [
         { header: "nome", key: "nome" },
         { header: "numero", key: "numero" },
@@ -129,27 +116,81 @@ var GetVendasMuquicaba_Service = class {
           email: emailArray[i]
         });
       }
-      sheet.workbook.xlsx.writeFile(`Relatorio-${dataAnterior}.xlsx`);
-      console.log(lengthData);
-      return vendas.data;
+      const dataAnterior = yield (0, import_moment2.default)().subtract(1, "days").format("YYYY-MM-DD");
+      sheet.workbook.xlsx.writeFile(`Muquicaba-Relat\xF3rio-${dataAnterior}.xlsx`);
+      return res.json(data);
     });
   }
 };
 
-// src/controllers/Muquicaba_01/GetVendasController.ts
-var GetVendasMuquicaba = class {
+// src/services/02guarapari/GetGuarapariServiceVendas.ts
+var import_axios2 = __toESM(require("axios"));
+var import_moment3 = __toESM(require("moment"));
+var GetGuarapariVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const api2 = yield import_axios2.default.create({
+        baseURL: "https://app.ssotica.com.br/api/v1/integracoes/vendas/periodo?cnpj=",
+        headers: {
+          "Authorization": "Bearer KyhmIwwbbttTtiTynlrPKkyla0wOWxNDKBuqBbgka3xGTdOsniwagsqVIISi"
+        }
+      });
+      const dataAnterior = yield (0, import_moment3.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const vendas = yield api2.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/02guarapari/GetGuarapariControllerVendas.ts
+var import_moment4 = __toESM(require("moment"));
+var GetGuarapariControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
-      const getVendas = new GetVendasMuquicaba_Service();
-      const vendas = yield getVendas.execute();
-      return res.json(vendas);
+      const getGuarapari = new GetGuarapariVendas_Service();
+      const vendasGuarapari = yield getGuarapari.execute();
+      const data = yield vendasGuarapari.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield (0, import_moment4.default)().subtract(1, "days").format("YYYY-MM-DD");
+      yield sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Guarapari-${dataAnterior}.xlsx`);
+      return res.json(data);
     });
   }
 };
 
 // src/routes.ts
 var router = (0, import_express.Router)();
-router.get("/vendasMuquicaba", new GetVendasMuquicaba().ex);
+router.get("/vendasMuquicaba", new GetMuquicabaControllerVendas().ex);
+router.get("/vendasGuarapari", new GetGuarapariControllerVendas().ex);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   router
