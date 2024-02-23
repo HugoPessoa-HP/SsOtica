@@ -1,7 +1,7 @@
 import { api } from '../../API';
 import moment from 'moment';
 
-class GetBarramaresVendas_Service{
+class GetBarraMaresVendas_Service{
     async execute(){
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
@@ -11,4 +11,4 @@ class GetBarramaresVendas_Service{
     }
 }
 
-export { GetBarramaresVendas_Service }
+export { GetBarraMaresVendas_Service }

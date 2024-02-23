@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import { GetShoppingVendas_Service } from "../../services/06shopping/GetShoppingServiceVendas"; 
+import { GetAeroportoVendas_Service } from "../../services/09aeroporto/GetAeroportoServiceVendas"; 
 import moment from 'moment';
 
-class GetShoppingControllerVendas {
+class GetAeroportoControllerVendas {
     async ex(req: Request, res: Response){
 
-        const getShopping = new GetShoppingVendas_Service();
-        const vendasShopping = await getShopping.execute();
+        const getAeroporto = new GetAeroportoVendas_Service();
+        const vendasAeroporto = await getAeroporto.execute();
         
-        const data = await vendasShopping.data;
+        const data = await vendasAeroporto.data;
         const lengthData = data.length;
 
         // Criação da Planilha
@@ -51,10 +51,10 @@ class GetShoppingControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Relatório-Shopping-${dataAnterior}.xlsx`)
+        sheet.workbook.xlsx.writeFile(`Relatório-Aeroporto-${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
         return res.json(data);
     }
 }
 
-export { GetShoppingControllerVendas }
+export { GetAeroportoControllerVendas }

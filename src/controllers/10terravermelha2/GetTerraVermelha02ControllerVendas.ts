@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import { GetShoppingVendas_Service } from "../../services/06shopping/GetShoppingServiceVendas"; 
+import { GetTerraVermelha02Vendas_Service } from "../../services/10terravermelha2/GetTerraVermelha02ServiceVendas"; 
 import moment from 'moment';
 
-class GetShoppingControllerVendas {
+class GetTerraVermelhaControllerVendas {
     async ex(req: Request, res: Response){
 
-        const getShopping = new GetShoppingVendas_Service();
-        const vendasShopping = await getShopping.execute();
+        const getTerraVermelha = new GetTerraVermelha02Vendas_Service();
+        const vendasTerraVermelha = await getTerraVermelha.execute();
         
-        const data = await vendasShopping.data;
+        const data = await vendasTerraVermelha.data;
         const lengthData = data.length;
 
         // Criação da Planilha
@@ -51,10 +51,10 @@ class GetShoppingControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Relatório-Shopping-${dataAnterior}.xlsx`)
+        sheet.workbook.xlsx.writeFile(`Relatório-Terra-Vermelha02-${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
         return res.json(data);
     }
 }
 
-export { GetShoppingControllerVendas }
+export { GetTerraVermelhaControllerVendas }

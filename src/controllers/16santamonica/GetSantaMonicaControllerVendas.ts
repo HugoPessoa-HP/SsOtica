@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import { GetShoppingVendas_Service } from "../../services/06shopping/GetShoppingServiceVendas"; 
+import { GetMatrizVendas_Service } from "../../services/14matriz/GetMatrizServiceVendas"; 
 import moment from 'moment';
 
-class GetShoppingControllerVendas {
+class GetMatrizControllerVendas {
     async ex(req: Request, res: Response){
 
-        const getShopping = new GetShoppingVendas_Service();
-        const vendasShopping = await getShopping.execute();
+        const getBarraMares = new GetMatrizVendas_Service();
+        const vendasBarraMares = await getBarraMares.execute();
         
-        const data = await vendasShopping.data;
+        const data = await vendasBarraMares.data;
         const lengthData = data.length;
 
         // Criação da Planilha
@@ -51,10 +51,10 @@ class GetShoppingControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Relatório-Shopping-${dataAnterior}.xlsx`)
+        sheet.workbook.xlsx.writeFile(`Loja Matriz - Relatório de -${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
         return res.json(data);
     }
 }
 
-export { GetShoppingControllerVendas }
+export { GetMatrizControllerVendas }
