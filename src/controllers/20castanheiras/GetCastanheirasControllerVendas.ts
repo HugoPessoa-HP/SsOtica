@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import { GetSotecoVendas_Service } from "../../services/15soteco/GetSotecoServiceVendas"; 
+import { GetCastanheirasVendas_Service } from "../../services/20castanheiras/GetCastanheirasServiceVendas";
 import moment from 'moment';
 
-class GetSotecoControllerVendas {
+class GetCastanheirasControllerVendas {
     async ex(req: Request, res: Response){
-
-        const getSoteco = new GetSotecoVendas_Service();
-        const vendasSoteco = await getSoteco.execute();
+        console.log('cheguei')
+        const getCastanheiras = new GetCastanheirasVendas_Service();
+        const vendas = await getCastanheiras.execute();
         
-        const data = await vendasSoteco.data;
+        const data = await vendas.data;
         const lengthData = data.length;
 
         // Criação da Planilha
@@ -51,10 +51,10 @@ class GetSotecoControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Loja Soteco - Relatório de -${dataAnterior}.xlsx`)
+        sheet.workbook.xlsx.writeFile(`Loja Castanheiras - Relatório de -${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
         return res.json(data);
     }
 }
 
-export { GetSotecoControllerVendas }
+export { GetCastanheirasControllerVendas }

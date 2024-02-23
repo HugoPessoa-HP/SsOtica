@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import { GetMatrizVendas_Service } from "../../services/14matriz/GetMatrizServiceVendas"; 
+import { GetSantaMonicaVendas_Service } from "../../services/16santamonica/GetSantaMonicaServiceVendas";
 import moment from 'moment';
 
-class GetMatrizControllerVendas {
+class GetSantaMonicaControllerVendas {
     async ex(req: Request, res: Response){
 
-        const getBarraMares = new GetMatrizVendas_Service();
-        const vendasBarraMares = await getBarraMares.execute();
+        const getSantaMonica = new GetSantaMonicaVendas_Service();
+        const vendasSantaMonica = await getSantaMonica.execute();
         
-        const data = await vendasBarraMares.data;
+        const data = await vendasSantaMonica.data;
         const lengthData = data.length;
 
         // Criação da Planilha
@@ -51,10 +51,10 @@ class GetMatrizControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Loja Matriz - Relatório de -${dataAnterior}.xlsx`)
+        sheet.workbook.xlsx.writeFile(`Loja Santa Monica - Relatório de -${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
         return res.json(data);
     }
 }
 
-export { GetMatrizControllerVendas }
+export { GetSantaMonicaControllerVendas }

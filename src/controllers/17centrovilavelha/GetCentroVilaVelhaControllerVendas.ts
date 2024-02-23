@@ -5,12 +5,12 @@ import moment from 'moment';
 class GetCentroVilaVelhaControllerVendas {
     async ex(req: Request, res: Response){
 
-        const getBarraMares = new GetCentroVilaVelhaVendas_Service();
-        const vendasBarraMares = await getBarraMares.execute();
+        const getCentro = new GetCentroVilaVelhaVendas_Service();
+        const vendasCentro = await getCentro.execute();
         
-        const data = await vendasBarraMares.data;
+        const data = await vendasCentro.data;
         const lengthData = data.length;
-        
+
         // Criação da Planilha
         const ExcelJS = require('exceljs');
         const workbook = new ExcelJS.Workbook();
@@ -51,7 +51,7 @@ class GetCentroVilaVelhaControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Loja Matriz - Relatório de -${dataAnterior}.xlsx`)
+        sheet.workbook.xlsx.writeFile(`Loja Centro Vila Velha - Relatório de -${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
         return res.json(data);
     }

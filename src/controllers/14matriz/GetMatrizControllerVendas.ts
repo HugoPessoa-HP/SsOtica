@@ -5,10 +5,10 @@ import moment from 'moment';
 class GetMatrizControllerVendas {
     async ex(req: Request, res: Response){
 
-        const getBarraMares = new GetMatrizVendas_Service();
-        const vendasBarraMares = await getBarraMares.execute();
+        const getMatriz = new GetMatrizVendas_Service();
+        const vendasMatriz = await getMatriz.execute();
         
-        const data = await vendasBarraMares.data;
+        const data = await vendasMatriz.data;
         const lengthData = data.length;
 
         // Criação da Planilha

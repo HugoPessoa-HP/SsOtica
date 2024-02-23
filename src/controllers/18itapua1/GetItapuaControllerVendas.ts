@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import { GetSotecoVendas_Service } from "../../services/15soteco/GetSotecoServiceVendas"; 
+import { GetItapuaVendas_Service } from "../../services/18itapua1/GetItapuaServiceVendas";
 import moment from 'moment';
 
-class GetSotecoControllerVendas {
+class GetItapuaControllerVendas {
     async ex(req: Request, res: Response){
 
-        const getSoteco = new GetSotecoVendas_Service();
-        const vendasSoteco = await getSoteco.execute();
+        const getItapua = new GetItapuaVendas_Service();
+        const vendasItapua = await getItapua.execute();
         
-        const data = await vendasSoteco.data;
+        const data = await vendasItapua.data;
         const lengthData = data.length;
 
         // Criação da Planilha
@@ -51,10 +51,10 @@ class GetSotecoControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Loja Soteco - Relatório de -${dataAnterior}.xlsx`)
+        sheet.workbook.xlsx.writeFile(`Loja Itapuã - Relatório de -${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
         return res.json(data);
     }
 }
 
-export { GetSotecoControllerVendas }
+export { GetItapuaControllerVendas }

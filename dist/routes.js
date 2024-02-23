@@ -182,10 +182,541 @@ var GetGuarapariControllerVendas = class {
   }
 };
 
+// src/services/03express/GetExpressServiceVendas.ts
+var import_moment5 = __toESM(require("moment"));
+var GetExpressVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield (0, import_moment5.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/03express/GetExpressControllerVendas.ts
+var import_moment6 = __toESM(require("moment"));
+var GetExpressControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getExpress = new GetExpressVendas_Service();
+      const vendasExpress = yield getExpress.execute();
+      const data = yield vendasExpress.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield (0, import_moment6.default)().subtract(1, "days").format("YYYY-MM-DD");
+      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Express-${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json(data);
+    });
+  }
+};
+
+// src/services/05marcilio/GetMarcilioServiceVendas.ts
+var import_moment7 = __toESM(require("moment"));
+var GetMarcilioVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield (0, import_moment7.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const vendas = yield api.get(`39892855000100&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/05marcilio/GetMarcilioControllerVendas.ts
+var import_moment8 = __toESM(require("moment"));
+var GetMarcilioControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getMarcilio = new GetMarcilioVendas_Service();
+      const vendasMarcilio = yield getMarcilio.execute();
+      const data = yield vendasMarcilio.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield (0, import_moment8.default)().subtract(1, "days").format("YYYY-MM-DD");
+      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Marc\xEDlio-${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json(data);
+    });
+  }
+};
+
+// src/services/06shopping/GetShoppingServiceVendas.ts
+var import_moment9 = __toESM(require("moment"));
+var GetShoppingVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield (0, import_moment9.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const vendas = yield api.get(`39402286000177&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/06shopping/GetShoppingControllerVendas.ts
+var import_moment10 = __toESM(require("moment"));
+var GetShoppingControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getShopping = new GetShoppingVendas_Service();
+      const vendasShopping = yield getShopping.execute();
+      const data = yield vendasShopping.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield (0, import_moment10.default)().subtract(1, "days").format("YYYY-MM-DD");
+      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Shopping-${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json(data);
+    });
+  }
+};
+
+// src/services/07terravermelha/GetTerraVermelhaServiceVendas.ts
+var import_moment11 = __toESM(require("moment"));
+var GetTerraVermelhaVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield (0, import_moment11.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const vendas = yield api.get(`40248658000131&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/07terravermelha/GetTerraVermelhaControllerVendas.ts
+var import_moment12 = __toESM(require("moment"));
+var GetTerraVermelhaControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getTerraVermelha = new GetTerraVermelhaVendas_Service();
+      const vendasTerraVermelha = yield getTerraVermelha.execute();
+      const data = yield vendasTerraVermelha.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield (0, import_moment12.default)().subtract(1, "days").format("YYYY-MM-DD");
+      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Terra-Vermelha-${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json(data);
+    });
+  }
+};
+
+// src/services/11ulisses/GetUlissesServiceVendas.ts
+var import_moment13 = __toESM(require("moment"));
+var GetUlissesVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield (0, import_moment13.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const vendas = yield api.get(`40926713000103&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/11ulisses/GetUlissesControllerVendas.ts
+var import_moment14 = __toESM(require("moment"));
+var GetUlissesControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getUlisses = new GetUlissesVendas_Service();
+      const vendasUlisses = yield getUlisses.execute();
+      const data = yield vendasUlisses.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield (0, import_moment14.default)().subtract(1, "days").format("YYYY-MM-DD");
+      sheet.workbook.xlsx.writeFile(`Loja Ulisses - Relat\xF3rio de ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json(data);
+    });
+  }
+};
+
+// src/services/08marcilio2/GetMarcilio2ServiceVendas.ts
+var import_moment15 = __toESM(require("moment"));
+var GetMarcilio02Vendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield (0, import_moment15.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const vendas = yield api.get(`45517253000175&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/08marcilio2/GetMarcilio02ControllerVendas.ts
+var import_moment16 = __toESM(require("moment"));
+var GetMarcilio02ControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getMarcilio = new GetMarcilio02Vendas_Service();
+      const vendasMarcilio = yield getMarcilio.execute();
+      const data = yield vendasMarcilio.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield (0, import_moment16.default)().subtract(1, "days").format("YYYY-MM-DD");
+      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Marc\xEDlio02-${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json(data);
+    });
+  }
+};
+
+// src/services/09aeroporto/GetAeroportoServiceVendas.ts
+var import_moment17 = __toESM(require("moment"));
+var GetAeroportoVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield (0, import_moment17.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const vendas = yield api.get(`40254669000124&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/09aeroporto/GetAeroportoControllerVendas.ts
+var import_moment18 = __toESM(require("moment"));
+var GetAeroportoControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getAeroporto = new GetAeroportoVendas_Service();
+      const vendasAeroporto = yield getAeroporto.execute();
+      const data = yield vendasAeroporto.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield (0, import_moment18.default)().subtract(1, "days").format("YYYY-MM-DD");
+      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Aeroporto-${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json(data);
+    });
+  }
+};
+
+// src/services/10terravermelha2/GetTerraVermelha02ServiceVendas.ts
+var import_moment19 = __toESM(require("moment"));
+var GetTerraVermelha02Vendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield (0, import_moment19.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const vendas = yield api.get(`40248658000131&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/10terravermelha2/GetTerraVermelha02ControllerVendas.ts
+var import_moment20 = __toESM(require("moment"));
+var GetTerraVermelha02ControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getTerraVermelha = new GetTerraVermelha02Vendas_Service();
+      const vendasTerraVermelha = yield getTerraVermelha.execute();
+      const data = yield vendasTerraVermelha.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield (0, import_moment20.default)().subtract(1, "days").format("YYYY-MM-DD");
+      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Terra-Vermelha02-${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json(data);
+    });
+  }
+};
+
+// src/services/12marcilio3/GetMarcilio03ServiceVendas.ts
+var import_moment21 = __toESM(require("moment"));
+var GetMarcilio03Vendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield (0, import_moment21.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/12marcilio3/GetMarcilio03ControllerVendas.ts
+var import_moment22 = __toESM(require("moment"));
+var GetMarcilio03ControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getMarcilio = new GetMarcilio03Vendas_Service();
+      const vendasMarcilio = yield getMarcilio.execute();
+      const data = yield vendasMarcilio.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield (0, import_moment22.default)().subtract(1, "days").format("YYYY-MM-DD");
+      sheet.workbook.xlsx.writeFile(`Loja Marcilio 03 - Relat\xF3rio de ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json(data);
+    });
+  }
+};
+
 // src/routes.ts
 var router = (0, import_express.Router)();
 router.get("/vendasMuquicaba", new GetMuquicabaControllerVendas().ex);
 router.get("/vendasGuarapari", new GetGuarapariControllerVendas().ex);
+router.get("/vendasExpress", new GetExpressControllerVendas().ex);
+router.get("/vendasMarcilio", new GetMarcilioControllerVendas().ex);
+router.get("/vendasShopping", new GetShoppingControllerVendas().ex);
+router.get("/vendasTerraVermelha", new GetTerraVermelhaControllerVendas().ex);
+router.get("/vendasMarcilio02", new GetMarcilio02ControllerVendas().ex);
+router.get("/vendasAeroporto", new GetAeroportoControllerVendas().ex);
+router.get("/vendasTerraVermelha02", new GetTerraVermelha02ControllerVendas().ex);
+router.get("/vendasUlisses", new GetUlissesControllerVendas().ex);
+router.get("/vendasMarcilio03", new GetMarcilio03ControllerVendas().ex);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   router
