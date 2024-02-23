@@ -10,7 +10,7 @@ class GetCentroVilaVelhaControllerVendas {
         
         const data = await vendasBarraMares.data;
         const lengthData = data.length;
-
+        
         // Criação da Planilha
         const ExcelJS = require('exceljs');
         const workbook = new ExcelJS.Workbook();

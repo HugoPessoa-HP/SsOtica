@@ -118,26 +118,19 @@ var GetMuquicabaControllerVendas = class {
       }
       const dataAnterior = yield (0, import_moment2.default)().subtract(1, "days").format("YYYY-MM-DD");
       sheet.workbook.xlsx.writeFile(`Muquicaba-Relat\xF3rio-${dataAnterior}.xlsx`);
-      return res.json(data);
       console.log("Relat\xF3rio Criado");
+      return res.json(data);
     });
   }
 };
 
 // src/services/02guarapari/GetGuarapariServiceVendas.ts
-var import_axios2 = __toESM(require("axios"));
 var import_moment3 = __toESM(require("moment"));
 var GetGuarapariVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const api2 = yield import_axios2.default.create({
-        baseURL: "https://app.ssotica.com.br/api/v1/integracoes/vendas/periodo?cnpj=",
-        headers: {
-          "Authorization": "Bearer KyhmIwwbbttTtiTynlrPKkyla0wOWxNDKBuqBbgka3xGTdOsniwagsqVIISi"
-        }
-      });
       const dataAnterior = yield (0, import_moment3.default)().subtract(1, "days").format("YYYY-MM-DD");
-      const vendas = yield api2.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -152,6 +145,7 @@ var GetGuarapariControllerVendas = class {
       const vendasGuarapari = yield getGuarapari.execute();
       const data = yield vendasGuarapari.data;
       const lengthData = data.length;
+      console.log(data);
       const ExcelJS = require("exceljs");
       const workbook = new ExcelJS.Workbook();
       const sheet = workbook.addWorksheet("Relatorio");

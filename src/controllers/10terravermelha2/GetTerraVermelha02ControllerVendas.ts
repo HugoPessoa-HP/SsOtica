@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { GetTerraVermelha02Vendas_Service } from "../../services/10terravermelha2/GetTerraVermelha02ServiceVendas"; 
 import moment from 'moment';
 
-class GetTerraVermelhaControllerVendas {
+class GetTerraVermelha02ControllerVendas {
     async ex(req: Request, res: Response){
 
         const getTerraVermelha = new GetTerraVermelha02Vendas_Service();
@@ -57,4 +57,4 @@ class GetTerraVermelhaControllerVendas {
     }
 }
 
-export { GetTerraVermelhaControllerVendas }
+export { GetTerraVermelha02ControllerVendas }
