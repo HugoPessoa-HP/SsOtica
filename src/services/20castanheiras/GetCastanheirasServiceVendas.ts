@@ -1,7 +1,7 @@
-import { api } from '../../API'
+import { api } from '../../API';
 import moment from 'moment';
 
-class GetExpressVendas_Service{
+class GetCastanheirasVendas_Service{
     async execute(){
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
@@ -11,4 +11,4 @@ class GetExpressVendas_Service{
     }
 }
 
-export { GetExpressVendas_Service }
+export { GetCastanheirasVendas_Service }

@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import { GetMuquicabaVendas_Service } from "../../services/01muquicaba/GetMuquicabaServiceVendas";
+import { GetMarcilioVendas_Service } from "../../services/05marcilio/GetMarcilioServiceVendas"; 
 import moment from 'moment';
 
-class GetMuquicabaControllerVendas {
+class GetMarcilioControllerVendas {
     async ex(req: Request, res: Response){
 
-        const getMuquicaba = new GetMuquicabaVendas_Service();
-        const vendasMuquicaba = await getMuquicaba.execute();
+        const getMarcilio = new GetMarcilioVendas_Service();
+        const vendasMarcilio = await getMarcilio.execute();
         
-        const data = await vendasMuquicaba.data;
+        const data = await vendasMarcilio.data;
         const lengthData = data.length;
 
         // Criação da Planilha
@@ -51,10 +51,10 @@ class GetMuquicabaControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Muquicaba-Relatório-${dataAnterior}.xlsx`)
+        sheet.workbook.xlsx.writeFile(`Relatório-Marcílio-${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
         return res.json(data);
     }
 }
 
-export { GetMuquicabaControllerVendas }
+export { GetMarcilioControllerVendas }
