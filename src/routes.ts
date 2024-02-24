@@ -33,5 +33,6 @@ router.get('/vendasAeroporto', new GetAeroportoControllerVendas().ex)
 router.get('/vendasTerraVermelha02', new GetTerraVermelha02ControllerVendas().ex)
 router.get('/vendasUlisses', new GetUlissesControllerVendas().ex)
 router.get('/vendasMarcilio03', new GetMarcilio03ControllerVendas().ex)
+router.get('')
 
 export { router }

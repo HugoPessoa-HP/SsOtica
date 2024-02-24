@@ -51,8 +51,8 @@ class GetTerraVermelha02ControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Relatório-Terra-Vermelha02-${dataAnterior}.xlsx`)
-        console.log("Relatório Criado")
+        sheet.workbook.xlsx.writeFile(`Relatorio-Terra-Vermelha02-${dataAnterior}.xlsx`)
+        console.log("Relatorio-Criado")
         return res.json(data);
     }
 }

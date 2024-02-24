@@ -51,7 +51,7 @@ class GetGuarapariControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        await sheet.workbook.xlsx.writeFile(`Relatório-Guarapari-${dataAnterior}.xlsx`);
+        await sheet.workbook.xlsx.writeFile(`Relatorio-Guarapari-${dataAnterior}.xlsx`);
         return res.json(data)
     }
 }

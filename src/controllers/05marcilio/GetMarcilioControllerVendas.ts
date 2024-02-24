@@ -51,8 +51,8 @@ class GetMarcilioControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Relatório-Marcílio-${dataAnterior}.xlsx`)
-        console.log("Relatório Criado")
+        sheet.workbook.xlsx.writeFile(`Relatorio-Marcilio-${dataAnterior}.xlsx`)
+        console.log("Relatorio-Criado")
         return res.json(data);
     }
 }

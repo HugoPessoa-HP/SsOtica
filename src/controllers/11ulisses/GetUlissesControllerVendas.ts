@@ -51,7 +51,7 @@ class GetUlissesControllerVendas {
         }
 
         const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Loja Ulisses - Relatório de ${dataAnterior}.xlsx`)
+        sheet.workbook.xlsx.writeFile(`Loja-Ulisses-Relatorio-de-${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
         return res.json(data);
     }
