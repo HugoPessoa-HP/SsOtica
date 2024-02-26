@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { GetSerra02Vendas_Service } from "../../services/23serra2/GetSerra02ServiceVendas";
 import moment from 'moment';
 
-class GetSerra01ControllerVendas {
+class GetSerra02ControllerVendas {
     async ex(req: Request, res: Response){
 
         const getSerra02 = new GetSerra02Vendas_Service();
@@ -57,4 +57,4 @@ class GetSerra01ControllerVendas {
     }
 }
 
-export { GetSerra01ControllerVendas }
+export { GetSerra02ControllerVendas }

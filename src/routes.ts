@@ -19,6 +19,18 @@ import { GetItapuaControllerVendas } from './controllers/18itapua1/GetItapuaCont
 import { GetAmoresSaudeControllerVendas } from './controllers/19amoresaude/GetAmorSaudeControllerVendas';
 import { GetCastanheirasControllerVendas } from './controllers/20castanheiras/GetCastanheirasControllerVendas';
 import { GetItapua02ControllerVendas } from './controllers/21itapua2/GetItapua02ControllerVendas';
+import { GetSerra01ControllerVendas } from './controllers/22serra1/GetSerra01ControllerVendas';
+import { GetSerra02ControllerVendas } from './controllers/22serra2/GetSerra02ControllerVendas';
+import { GetLaranjeirasControllerVendas } from './controllers/24laranjeiras/GetLaranjeirasControllerVendas';
+import { GetTerraVermelha03ControllerVendas } from './controllers/25terravermelha3/GetTerraVermelha03ControllerVendas';
+import { GetSerraControllerVendas } from './controllers/26serra/GetSerraControllerVendas';
+import { GetQuatroPistasControllerVendas } from './controllers/27quatropistas/GetQuatroPistasControllerVendas';
+import { GetLoja28ControllerVendas } from './controllers/28/GetLoja28ControllerVendas';
+import { GetMercadaoControllerVendas } from './controllers/29mercadao/GetMercadaoControllerVendas';
+import { GetLaranjeiras03ControllerVendas } from './controllers/30laranjeiras3/GetLaranjeiras03ControllerVendas';
+import { GetCariacicaControllerVendas } from './controllers/31cariacica/GetCariacicaControllerVendas';
+import { GetAlegriaCardControllerVendas } from './controllers/32alegriacard/GetAlegriaCardControllerVendas';
+import { GetCariacica02ControllerVendas } from './controllers/33cariacica2/GetCariacica02ControllerVendas';
 
 const router = Router();
 
@@ -33,6 +45,26 @@ router.get('/vendasAeroporto', new GetAeroportoControllerVendas().ex)
 router.get('/vendasTerraVermelha02', new GetTerraVermelha02ControllerVendas().ex)
 router.get('/vendasUlisses', new GetUlissesControllerVendas().ex)
 router.get('/vendasMarcilio03', new GetMarcilio03ControllerVendas().ex)
-router.get('')
+router.get('/vendasBarraMares', new GetBarraMaresControllerVendas().ex)
+router.get('/vendasMatriz', new GetMatrizControllerVendas().ex)
+router.get('/vendasSoteco', new GetSotecoControllerVendas().ex)
+router.get('vendasSantaMonica', new GetSantaMonicaControllerVendas().ex)
+router.get('/vendasCentroVilaVelha', new GetCentroVilaVelhaControllerVendas().ex)
+router.get('/vendasItapua1', new GetItapuaControllerVendas().ex)
+router.get('/vendasAmorSaude', new GetAmoresSaudeControllerVendas().ex)
+router.get('/vendasCastanheiras', new GetCastanheirasControllerVendas().ex)
+router.get('/vendasItapua02', new GetItapua02ControllerVendas().ex)
+router.get('/vendasSerra01', new GetSerra01ControllerVendas().ex)
+router.get('/vendasSerra02', new GetSerra02ControllerVendas().ex)
+router.get('/vendasLaranjeiras', new GetLaranjeirasControllerVendas().ex)
+router.get('/vendasTerraVermelha03', new GetTerraVermelha03ControllerVendas().ex)
+router.get('/vendasSerra', new GetSerraControllerVendas().ex)
+router.get('/vendasQuatroPistas', new GetQuatroPistasControllerVendas().ex)
+router.get('/vendasLoja28', new GetLoja28ControllerVendas().ex)
+router.get('/vendasMercadao', new GetMercadaoControllerVendas().ex)
+router.get('/vendasLaranjeiras03', new GetLaranjeiras03ControllerVendas().ex)
+router.get('/vendasCariacica', new GetCariacicaControllerVendas().ex)
+router.get('/vendasAlegriaCard', new GetAlegriaCardControllerVendas().ex)
+router.get('/vendasCariacica02', new GetCariacica02ControllerVendas().ex)
 
 export { router }
