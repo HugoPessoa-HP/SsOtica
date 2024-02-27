@@ -33,10 +33,10 @@ class GetAeroportoControllerVendas {
             await nomeArray.push(nomeV);
 
             var numeroV = await data[i].cliente.telefones;
-            var valor = await numeroV[0];
-            numeroV = await JSON.stringify(valor);
-            numeroV = await numeroV.replace(/\D/g,'');
-            await numeroArray.push(numeroV);
+            var valorInteiro = await numeroV[0];
+            valorInteiro = await JSON.stringify(valorInteiro);
+            const valor = await valorInteiro.replace(/\D/g,'');
+            await numeroArray.push(valor);
 
             var emailV = await data[i].valor_liquido;
             emailV = await JSON.stringify(emailV);
