@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetMuquicabaVendas_Service } from "../../services/01muquicaba/GetMuquicabaServiceVendas";
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada"
 
 class GetMuquicabaControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetMuquicabaControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Muquicaba-Relatorio-${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`01 Loja Muquiçaba - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatorio Criado")
-        return res.json(data);
+        return res.json("Fim da Rota");
     }
 }
 

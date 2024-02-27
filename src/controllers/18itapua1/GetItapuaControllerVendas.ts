@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetItapuaVendas_Service } from "../../services/18itapua1/GetItapuaServiceVendas";
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetItapuaControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetItapuaControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Loja Itapuã - Relatório de -${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`18 Loja Itapuã - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
-        return res.json(data);
+        return res.json("Fim da Rota");
     }
 }
 

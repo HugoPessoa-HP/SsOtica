@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetCentroVilaVelhaVendas_Service } from "../../services/17centrovilavelha/GetCentroVilaVelhaServiceVendas"; 
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetCentroVilaVelhaControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetCentroVilaVelhaControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Loja Centro Vila Velha - Relatório de -${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`17 Loja Centro Vila Velha - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
-        return res.json(data);
+        return res.json("Fim da Rota");
     }
 }
 

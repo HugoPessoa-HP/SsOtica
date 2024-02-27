@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetLaranjeiras03Vendas_Service } from "../../services/30laranjeiras3/GetLaranjeiras03ServiceVendas";
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetLaranjeiras03ControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetLaranjeiras03ControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`21 Loja Laranjeiras 3 - Relatório de -${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`21 Loja Laranjeiras 3 - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
-        return res.json(data);
+        return res.json("Fim da Rota");
     }
 }
 

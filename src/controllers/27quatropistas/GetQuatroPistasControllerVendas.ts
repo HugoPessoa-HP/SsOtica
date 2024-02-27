@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Get04PistasVendas_Service } from "../../services/27quatropistas/GetQuatroPistasServiceVendas";
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetQuatroPistasControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetQuatroPistasControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`27 Loja Quatro Pistas - Relatório de -${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`27 Loja Quatro Pistas - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
-        return res.json(data);
+        return res.json("Fim da Rota");
     }
 }
 

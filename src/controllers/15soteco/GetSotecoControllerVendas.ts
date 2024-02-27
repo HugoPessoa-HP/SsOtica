@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetSotecoVendas_Service } from "../../services/15soteco/GetSotecoServiceVendas"; 
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetSotecoControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetSotecoControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Loja Soteco - Relatório de -${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`15 Loja Soteco - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
-        return res.json(data);
+        return res.json("Fim da Rota");
     }
 }
 

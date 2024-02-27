@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetTerraVermelha03Vendas_Service } from "../../services/25terravermelha3/GetTerraVermelha03ServiceVendas";
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetTerraVermelha03ControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetTerraVermelha03ControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`25 Loja Terra Vermelha 3 - Relatório de -${dataAnterior}.xlsx`)
-        console.log("Relatório Criado")
-        return res.json(data);
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`25 Loja Terra Vermelha 3 - Relatório de Vendas - ${dataAnterior}.xlsx`)
+        console.log("Relatório Criado");
+        return res.json("Fim da Rota");
     }
 }
 

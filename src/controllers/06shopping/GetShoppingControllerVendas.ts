@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetShoppingVendas_Service } from "../../services/06shopping/GetShoppingServiceVendas"; 
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetShoppingControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetShoppingControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Relatorio-Shopping-${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`06 Loja Shopping - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatorio Criado")
-        return res.json(data);
+        return res.json("Fim da Rota");
     }
 }
 

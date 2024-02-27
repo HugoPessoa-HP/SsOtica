@@ -20,7 +20,7 @@ import { GetAmoresSaudeControllerVendas } from './controllers/19amoresaude/GetAm
 import { GetCastanheirasControllerVendas } from './controllers/20castanheiras/GetCastanheirasControllerVendas';
 import { GetItapua02ControllerVendas } from './controllers/21itapua2/GetItapua02ControllerVendas';
 import { GetSerra01ControllerVendas } from './controllers/22serra1/GetSerra01ControllerVendas';
-import { GetSerra02ControllerVendas } from './controllers/22serra2/GetSerra02ControllerVendas';
+import { GetSerra02ControllerVendas } from './controllers/23serra2/GetSerra02ControllerVendas';
 import { GetLaranjeirasControllerVendas } from './controllers/24laranjeiras/GetLaranjeirasControllerVendas';
 import { GetTerraVermelha03ControllerVendas } from './controllers/25terravermelha3/GetTerraVermelha03ControllerVendas';
 import { GetSerraControllerVendas } from './controllers/26serra/GetSerraControllerVendas';

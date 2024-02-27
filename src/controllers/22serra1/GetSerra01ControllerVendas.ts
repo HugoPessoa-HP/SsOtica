@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetSerra01Vendas_Service } from "../../services/22serra1/GetSerra01ServiceVendas";
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetSerra01ControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetSerra01ControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`22 Loja Serra 1 - Relatório de -${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`22 Loja Serra 1 - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
-        return res.json(data);
+        return res.json("Fim da Rota");
     }
 }
 

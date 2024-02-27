@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetMarcilio02Vendas_Service } from "../../services/08marcilio2/GetMarcilio2ServiceVendas"; 
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetMarcilio02ControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetMarcilio02ControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Relatorio-Marcilio02-${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`08 Loja Marcilio02 - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatorio-Criado")
-        return res.json(data);
+        return res.json("Fim da Rota");
     }
 }
 

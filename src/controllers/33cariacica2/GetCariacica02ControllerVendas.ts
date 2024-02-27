@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetCariacica02Vendas_Service } from "../../services/33cariacica2/GetCariacica02ServiceVendas";
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetCariacica02ControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetCariacica02ControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`33 Loja Cariacica 2 - Relatório de -${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`33 Loja Cariacica 2 - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
-        return res.json(data);
+        return res.json("Fim da Rota");
     }
 }
 

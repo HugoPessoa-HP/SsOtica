@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetBarraMaresVendas_Service } from "../../services/13barramares/GetBarramaresServiceVendas"; 
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetBarraMaresControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetBarraMaresControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Loja Barra Mares - Relatório de -${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`13 Loja Barra Mares - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
-        return res.json(data);
+        return res.json("Fim de Rota");
     }
 }
 

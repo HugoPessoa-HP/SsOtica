@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetMatrizVendas_Service } from "../../services/14matriz/GetMatrizServiceVendas"; 
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetMatrizControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,10 +50,10 @@ class GetMatrizControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        sheet.workbook.xlsx.writeFile(`Loja Matriz - Relatório de -${dataAnterior}.xlsx`)
+        const dataAnterior = await dataAtualizada();
+        sheet.workbook.xlsx.writeFile(`14 Loja Matriz - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
-        return res.json(data);
+        return res.json("Fim da Rota");
     }
 }
 

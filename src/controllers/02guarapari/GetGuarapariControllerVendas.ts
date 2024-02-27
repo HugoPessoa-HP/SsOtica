@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetGuarapariVendas_Service } from "../../services/02guarapari/GetGuarapariServiceVendas";
-import moment from 'moment';
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada"
 
 class GetGuarapariControllerVendas {
     async ex(req: Request, res: Response){
@@ -50,9 +50,10 @@ class GetGuarapariControllerVendas {
 
         }
 
-        const dataAnterior = await moment().subtract(1 , "days").format("YYYY-MM-DD");
-        await sheet.workbook.xlsx.writeFile(`Relatorio-Guarapari-${dataAnterior}.xlsx`);
-        return res.json(data)
+        const dataAnterior = await dataAtualizada();
+        await sheet.workbook.xlsx.writeFile(`02 Loja Guarapari - Relatório de Vendas - ${dataAnterior}.xlsx`);
+        console.log("Relatório Criado")
+        return res.json("Fim da Rota")
     }
 }
 
