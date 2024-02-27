@@ -65,12 +65,27 @@ var api = import_axios.default.create({
   }
 });
 
-// src/services/15soteco/GetSotecoServiceVendas.ts
+// src/VendasFuncoes/dataAtualizada.ts
 var import_moment = __toESM(require("moment"));
+function dataAtualizada() {
+  return __async(this, null, function* () {
+    let dataAtual = /* @__PURE__ */ new Date();
+    if (dataAtual.getDay() == 1) {
+      const dataAnterior = yield (0, import_moment.default)().subtract(3, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    } else {
+      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    }
+  });
+}
+var dataAtualizada_default = dataAtualizada;
+
+// src/services/15soteco/GetSotecoServiceVendas.ts
 var GetSotecoVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -78,13 +93,12 @@ var GetSotecoVendas_Service = class {
 };
 
 // src/controllers/15soteco/GetSotecoControllerVendas.ts
-var import_moment2 = __toESM(require("moment"));
 var GetSotecoControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
-      const getBarraMares = new GetSotecoVendas_Service();
-      const vendasBarraMares = yield getBarraMares.execute();
-      const data = yield vendasBarraMares.data;
+      const getSoteco = new GetSotecoVendas_Service();
+      const vendasSoteco = yield getSoteco.execute();
+      const data = yield vendasSoteco.data;
       const lengthData = data.length;
       const ExcelJS = require("exceljs");
       const workbook = new ExcelJS.Workbook();
@@ -115,10 +129,10 @@ var GetSotecoControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment2.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Loja Soteco - Relat\xF3rio de -${dataAnterior}.xlsx`);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`15 Loja Soteco - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
       console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      return res.json("Fim da Rota");
     });
   }
 };

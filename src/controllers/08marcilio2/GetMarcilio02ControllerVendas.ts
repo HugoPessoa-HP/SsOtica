@@ -33,7 +33,7 @@ class GetMarcilio02ControllerVendas {
             await nomeArray.push(nomeV);
 
             var numeroV = await data[i].cliente.telefones;
-            var values = await Object.values(numeroV[0]);
+            var values = await numeroV[0]
             numeroV = await JSON.stringify(values);
             numeroV = await numeroV.replace(/\D/g,'');
             await numeroArray.push(numeroV);

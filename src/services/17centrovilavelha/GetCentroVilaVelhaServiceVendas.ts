@@ -5,7 +5,7 @@ class GetCentroVilaVelhaVendas_Service{
     async execute(){
 
         const dataAnterior = await dataAtualizada();
-        const vendas = await api.get(`44448029000106&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+        const vendas = await api.get(`73687134000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
 
         return vendas;
     }

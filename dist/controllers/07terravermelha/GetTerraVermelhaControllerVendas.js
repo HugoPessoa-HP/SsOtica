@@ -65,12 +65,27 @@ var api = import_axios.default.create({
   }
 });
 
-// src/services/07terravermelha/GetTerraVermelhaServiceVendas.ts
+// src/VendasFuncoes/dataAtualizada.ts
 var import_moment = __toESM(require("moment"));
+function dataAtualizada() {
+  return __async(this, null, function* () {
+    let dataAtual = /* @__PURE__ */ new Date();
+    if (dataAtual.getDay() == 1) {
+      const dataAnterior = yield (0, import_moment.default)().subtract(3, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    } else {
+      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    }
+  });
+}
+var dataAtualizada_default = dataAtualizada;
+
+// src/services/07terravermelha/GetTerraVermelhaServiceVendas.ts
 var GetTerraVermelhaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`40248658000131&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -78,7 +93,6 @@ var GetTerraVermelhaVendas_Service = class {
 };
 
 // src/controllers/07terravermelha/GetTerraVermelhaControllerVendas.ts
-var import_moment2 = __toESM(require("moment"));
 var GetTerraVermelhaControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -102,7 +116,7 @@ var GetTerraVermelhaControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
+        var values = yield numeroV[0];
         numeroV = yield JSON.stringify(values);
         numeroV = yield numeroV.replace(/\D/g, "");
         yield numeroArray.push(numeroV);
@@ -115,10 +129,10 @@ var GetTerraVermelhaControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment2.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Terra-Vermelha-${dataAnterior}.xlsx`);
-      console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`07 Loja Terra Vermelha - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relatorio-Criado");
+      return res.json("Fim da Rota");
     });
   }
 };

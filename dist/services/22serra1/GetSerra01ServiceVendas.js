@@ -65,12 +65,27 @@ var api = import_axios.default.create({
   }
 });
 
-// src/services/22serra1/GetSerra01ServiceVendas.ts
+// src/VendasFuncoes/dataAtualizada.ts
 var import_moment = __toESM(require("moment"));
+function dataAtualizada() {
+  return __async(this, null, function* () {
+    let dataAtual = /* @__PURE__ */ new Date();
+    if (dataAtual.getDay() == 1) {
+      const dataAnterior = yield (0, import_moment.default)().subtract(3, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    } else {
+      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    }
+  });
+}
+var dataAtualizada_default = dataAtualizada;
+
+// src/services/22serra1/GetSerra01ServiceVendas.ts
 var GetSerra01Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });

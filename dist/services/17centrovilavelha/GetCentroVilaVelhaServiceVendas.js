@@ -65,13 +65,28 @@ var api = import_axios.default.create({
   }
 });
 
-// src/services/17centrovilavelha/GetCentroVilaVelhaServiceVendas.ts
+// src/VendasFuncoes/dataAtualizada.ts
 var import_moment = __toESM(require("moment"));
+function dataAtualizada() {
+  return __async(this, null, function* () {
+    let dataAtual = /* @__PURE__ */ new Date();
+    if (dataAtual.getDay() == 1) {
+      const dataAnterior = yield (0, import_moment.default)().subtract(3, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    } else {
+      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    }
+  });
+}
+var dataAtualizada_default = dataAtualizada;
+
+// src/services/17centrovilavelha/GetCentroVilaVelhaServiceVendas.ts
 var GetCentroVilaVelhaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
-      const vendas = yield api.get(`44448029000106&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`73687134000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }

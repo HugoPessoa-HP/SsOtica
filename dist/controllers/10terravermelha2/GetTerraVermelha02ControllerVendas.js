@@ -65,12 +65,27 @@ var api = import_axios.default.create({
   }
 });
 
-// src/services/10terravermelha2/GetTerraVermelha02ServiceVendas.ts
+// src/VendasFuncoes/dataAtualizada.ts
 var import_moment = __toESM(require("moment"));
+function dataAtualizada() {
+  return __async(this, null, function* () {
+    let dataAtual = /* @__PURE__ */ new Date();
+    if (dataAtual.getDay() == 1) {
+      const dataAnterior = yield (0, import_moment.default)().subtract(3, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    } else {
+      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    }
+  });
+}
+var dataAtualizada_default = dataAtualizada;
+
+// src/services/10terravermelha2/GetTerraVermelha02ServiceVendas.ts
 var GetTerraVermelha02Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`40248658000131&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -78,7 +93,6 @@ var GetTerraVermelha02Vendas_Service = class {
 };
 
 // src/controllers/10terravermelha2/GetTerraVermelha02ControllerVendas.ts
-var import_moment2 = __toESM(require("moment"));
 var GetTerraVermelha02ControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -115,10 +129,10 @@ var GetTerraVermelha02ControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment2.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Terra-Vermelha02-${dataAnterior}.xlsx`);
-      console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`10 Loja Terra Vermelha 2 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relatorio-Criado");
+      return res.json("Fim de Rota");
     });
   }
 };

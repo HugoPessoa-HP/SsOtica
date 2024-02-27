@@ -65,26 +65,40 @@ var api = import_axios.default.create({
   }
 });
 
-// src/services/17centrovilavelha/GetCentroVilaVelhaServiceVendas.ts
+// src/VendasFuncoes/dataAtualizada.ts
 var import_moment = __toESM(require("moment"));
+function dataAtualizada() {
+  return __async(this, null, function* () {
+    let dataAtual = /* @__PURE__ */ new Date();
+    if (dataAtual.getDay() == 1) {
+      const dataAnterior = yield (0, import_moment.default)().subtract(3, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    } else {
+      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    }
+  });
+}
+var dataAtualizada_default = dataAtualizada;
+
+// src/services/17centrovilavelha/GetCentroVilaVelhaServiceVendas.ts
 var GetCentroVilaVelhaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
-      const vendas = yield api.get(`44448029000106&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`73687134000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
 };
 
 // src/controllers/17centrovilavelha/GetCentroVilaVelhaControllerVendas.ts
-var import_moment2 = __toESM(require("moment"));
 var GetCentroVilaVelhaControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
-      const getBarraMares = new GetCentroVilaVelhaVendas_Service();
-      const vendasBarraMares = yield getBarraMares.execute();
-      const data = yield vendasBarraMares.data;
+      const getCentro = new GetCentroVilaVelhaVendas_Service();
+      const vendasCentro = yield getCentro.execute();
+      const data = yield vendasCentro.data;
       const lengthData = data.length;
       const ExcelJS = require("exceljs");
       const workbook = new ExcelJS.Workbook();
@@ -115,10 +129,10 @@ var GetCentroVilaVelhaControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment2.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Loja Matriz - Relat\xF3rio de -${dataAnterior}.xlsx`);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`17 Loja Centro Vila Velha - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
       console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      return res.json("Fim da Rota");
     });
   }
 };

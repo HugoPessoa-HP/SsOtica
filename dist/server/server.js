@@ -59,12 +59,27 @@ var api = import_axios.default.create({
   }
 });
 
-// src/services/01muquicaba/GetMuquicabaServiceVendas.ts
+// src/VendasFuncoes/dataAtualizada.ts
 var import_moment = __toESM(require("moment"));
+function dataAtualizada() {
+  return __async(this, null, function* () {
+    let dataAtual = /* @__PURE__ */ new Date();
+    if (dataAtual.getDay() == 1) {
+      const dataAnterior = yield (0, import_moment.default)().subtract(3, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    } else {
+      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    }
+  });
+}
+var dataAtualizada_default = dataAtualizada;
+
+// src/services/01muquicaba/GetMuquicabaServiceVendas.ts
 var GetMuquicabaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`33879704000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -72,7 +87,6 @@ var GetMuquicabaVendas_Service = class {
 };
 
 // src/controllers/01muquicaba/GetMuquicabaControllerVendas.ts
-var import_moment2 = __toESM(require("moment"));
 var GetMuquicabaControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -96,7 +110,7 @@ var GetMuquicabaControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
+        var values = yield numeroV[0];
         numeroV = yield JSON.stringify(values);
         numeroV = yield numeroV.replace(/\D/g, "");
         yield numeroArray.push(numeroV);
@@ -109,20 +123,19 @@ var GetMuquicabaControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment2.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Muquicaba-Relat\xF3rio-${dataAnterior}.xlsx`);
-      console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`01 Loja Muqui\xE7aba - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relatorio Criado");
+      return res.json("Fim da Rota");
     });
   }
 };
 
 // src/services/02guarapari/GetGuarapariServiceVendas.ts
-var import_moment3 = __toESM(require("moment"));
 var GetGuarapariVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment3.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -130,7 +143,6 @@ var GetGuarapariVendas_Service = class {
 };
 
 // src/controllers/02guarapari/GetGuarapariControllerVendas.ts
-var import_moment4 = __toESM(require("moment"));
 var GetGuarapariControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -155,7 +167,7 @@ var GetGuarapariControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
+        var values = yield numeroV[0];
         numeroV = yield JSON.stringify(values);
         numeroV = yield numeroV.replace(/\D/g, "");
         yield numeroArray.push(numeroV);
@@ -168,19 +180,19 @@ var GetGuarapariControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment4.default)().subtract(1, "days").format("YYYY-MM-DD");
-      yield sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Guarapari-${dataAnterior}.xlsx`);
-      return res.json(data);
+      const dataAnterior = yield dataAtualizada_default();
+      yield sheet.workbook.xlsx.writeFile(`02 Loja Guarapari - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
     });
   }
 };
 
 // src/services/03express/GetExpressServiceVendas.ts
-var import_moment5 = __toESM(require("moment"));
 var GetExpressVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment5.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -188,7 +200,6 @@ var GetExpressVendas_Service = class {
 };
 
 // src/controllers/03express/GetExpressControllerVendas.ts
-var import_moment6 = __toESM(require("moment"));
 var GetExpressControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -212,7 +223,7 @@ var GetExpressControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
+        var values = yield numeroV[0];
         numeroV = yield JSON.stringify(values);
         numeroV = yield numeroV.replace(/\D/g, "");
         yield numeroArray.push(numeroV);
@@ -225,20 +236,19 @@ var GetExpressControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment6.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Express-${dataAnterior}.xlsx`);
-      console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`03 Loja Express - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relatorio-Criado");
+      return res.json("Fim da Rota");
     });
   }
 };
 
 // src/services/05marcilio/GetMarcilioServiceVendas.ts
-var import_moment7 = __toESM(require("moment"));
 var GetMarcilioVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment7.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`39892855000100&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -246,7 +256,6 @@ var GetMarcilioVendas_Service = class {
 };
 
 // src/controllers/05marcilio/GetMarcilioControllerVendas.ts
-var import_moment8 = __toESM(require("moment"));
 var GetMarcilioControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -270,7 +279,7 @@ var GetMarcilioControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
+        var values = yield numeroV[0];
         numeroV = yield JSON.stringify(values);
         numeroV = yield numeroV.replace(/\D/g, "");
         yield numeroArray.push(numeroV);
@@ -283,20 +292,19 @@ var GetMarcilioControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment8.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Marc\xEDlio-${dataAnterior}.xlsx`);
-      console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`05 Loja Marc\xEDlio - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relatorio-Criado");
+      return res.json("Fim de Rota");
     });
   }
 };
 
 // src/services/06shopping/GetShoppingServiceVendas.ts
-var import_moment9 = __toESM(require("moment"));
 var GetShoppingVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment9.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`39402286000177&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -304,7 +312,6 @@ var GetShoppingVendas_Service = class {
 };
 
 // src/controllers/06shopping/GetShoppingControllerVendas.ts
-var import_moment10 = __toESM(require("moment"));
 var GetShoppingControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -328,7 +335,7 @@ var GetShoppingControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
+        var values = yield numeroV[0];
         numeroV = yield JSON.stringify(values);
         numeroV = yield numeroV.replace(/\D/g, "");
         yield numeroArray.push(numeroV);
@@ -341,20 +348,19 @@ var GetShoppingControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment10.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Shopping-${dataAnterior}.xlsx`);
-      console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`06 Loja Shopping - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relatorio Criado");
+      return res.json("Fim da Rota");
     });
   }
 };
 
 // src/services/07terravermelha/GetTerraVermelhaServiceVendas.ts
-var import_moment11 = __toESM(require("moment"));
 var GetTerraVermelhaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment11.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`40248658000131&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -362,7 +368,6 @@ var GetTerraVermelhaVendas_Service = class {
 };
 
 // src/controllers/07terravermelha/GetTerraVermelhaControllerVendas.ts
-var import_moment12 = __toESM(require("moment"));
 var GetTerraVermelhaControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -386,7 +391,7 @@ var GetTerraVermelhaControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
+        var values = yield numeroV[0];
         numeroV = yield JSON.stringify(values);
         numeroV = yield numeroV.replace(/\D/g, "");
         yield numeroArray.push(numeroV);
@@ -399,20 +404,19 @@ var GetTerraVermelhaControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment12.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Terra-Vermelha-${dataAnterior}.xlsx`);
-      console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`07 Loja Terra Vermelha - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relatorio-Criado");
+      return res.json("Fim da Rota");
     });
   }
 };
 
 // src/services/11ulisses/GetUlissesServiceVendas.ts
-var import_moment13 = __toESM(require("moment"));
 var GetUlissesVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment13.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`40926713000103&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -420,7 +424,6 @@ var GetUlissesVendas_Service = class {
 };
 
 // src/controllers/11ulisses/GetUlissesControllerVendas.ts
-var import_moment14 = __toESM(require("moment"));
 var GetUlissesControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -457,20 +460,19 @@ var GetUlissesControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment14.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Loja Ulisses - Relat\xF3rio de ${dataAnterior}.xlsx`);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`11 Loja Ulisses - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
       console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      return res.json("Fim de Rota");
     });
   }
 };
 
 // src/services/08marcilio2/GetMarcilio2ServiceVendas.ts
-var import_moment15 = __toESM(require("moment"));
 var GetMarcilio02Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment15.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`45517253000175&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -478,7 +480,6 @@ var GetMarcilio02Vendas_Service = class {
 };
 
 // src/controllers/08marcilio2/GetMarcilio02ControllerVendas.ts
-var import_moment16 = __toESM(require("moment"));
 var GetMarcilio02ControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -502,7 +503,7 @@ var GetMarcilio02ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
+        var values = yield numeroV[0];
         numeroV = yield JSON.stringify(values);
         numeroV = yield numeroV.replace(/\D/g, "");
         yield numeroArray.push(numeroV);
@@ -515,20 +516,19 @@ var GetMarcilio02ControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment16.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Marc\xEDlio02-${dataAnterior}.xlsx`);
-      console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`08 Loja Marcilio02 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relatorio-Criado");
+      return res.json("Fim da Rota");
     });
   }
 };
 
 // src/services/09aeroporto/GetAeroportoServiceVendas.ts
-var import_moment17 = __toESM(require("moment"));
 var GetAeroportoVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment17.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`40254669000124&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -536,7 +536,6 @@ var GetAeroportoVendas_Service = class {
 };
 
 // src/controllers/09aeroporto/GetAeroportoControllerVendas.ts
-var import_moment18 = __toESM(require("moment"));
 var GetAeroportoControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -560,8 +559,8 @@ var GetAeroportoControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
+        var valor = yield numeroV[0];
+        numeroV = yield JSON.stringify(valor);
         numeroV = yield numeroV.replace(/\D/g, "");
         yield numeroArray.push(numeroV);
         var emailV = yield data[i].valor_liquido;
@@ -573,20 +572,19 @@ var GetAeroportoControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment18.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Aeroporto-${dataAnterior}.xlsx`);
-      console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`09 Loja Aeroporto - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relatorio-Criado");
+      return res.json("Fim da Rota");
     });
   }
 };
 
 // src/services/10terravermelha2/GetTerraVermelha02ServiceVendas.ts
-var import_moment19 = __toESM(require("moment"));
 var GetTerraVermelha02Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment19.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`40248658000131&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -594,7 +592,6 @@ var GetTerraVermelha02Vendas_Service = class {
 };
 
 // src/controllers/10terravermelha2/GetTerraVermelha02ControllerVendas.ts
-var import_moment20 = __toESM(require("moment"));
 var GetTerraVermelha02ControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -631,20 +628,19 @@ var GetTerraVermelha02ControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment20.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Relat\xF3rio-Terra-Vermelha02-${dataAnterior}.xlsx`);
-      console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`10 Loja Terra Vermelha 2 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relatorio-Criado");
+      return res.json("Fim de Rota");
     });
   }
 };
 
 // src/services/12marcilio3/GetMarcilio03ServiceVendas.ts
-var import_moment21 = __toESM(require("moment"));
 var GetMarcilio03Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment21.default)().subtract(1, "days").format("YYYY-MM-DD");
+      const dataAnterior = yield dataAtualizada_default();
       const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
@@ -652,7 +648,6 @@ var GetMarcilio03Vendas_Service = class {
 };
 
 // src/controllers/12marcilio3/GetMarcilio03ControllerVendas.ts
-var import_moment22 = __toESM(require("moment"));
 var GetMarcilio03ControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
@@ -689,10 +684,1187 @@ var GetMarcilio03ControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment22.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Loja Marcilio 03 - Relat\xF3rio de ${dataAnterior}.xlsx`);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`12 Loja Marcilio 3 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
       console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      return res.json("Fim de Rota");
+    });
+  }
+};
+
+// src/services/13barramares/GetBarramaresServiceVendas.ts
+var GetBarraMaresVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`42816990000180&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/13barramares/GetBarraMaresControllerVendas.ts
+var GetBarraMaresControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getBarraMares = new GetBarraMaresVendas_Service();
+      const vendasBarraMares = yield getBarraMares.execute();
+      const data = yield vendasBarraMares.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`13 Loja Barra Mares - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim de Rota");
+    });
+  }
+};
+
+// src/services/14matriz/GetMatrizServiceVendas.ts
+var GetMatrizVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/14matriz/GetMatrizControllerVendas.ts
+var GetMatrizControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getMatriz = new GetMatrizVendas_Service();
+      const vendasMatriz = yield getMatriz.execute();
+      const data = yield vendasMatriz.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`14 Loja Matriz - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/15soteco/GetSotecoServiceVendas.ts
+var GetSotecoVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/15soteco/GetSotecoControllerVendas.ts
+var GetSotecoControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getSoteco = new GetSotecoVendas_Service();
+      const vendasSoteco = yield getSoteco.execute();
+      const data = yield vendasSoteco.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`15 Loja Soteco - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/16santamonica/GetSantaMonicaServiceVendas.ts
+var GetSantaMonicaVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44448029000106&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/16santamonica/GetSantaMonicaControllerVendas.ts
+var GetSantaMonicaControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getSantaMonica = new GetSantaMonicaVendas_Service();
+      const vendasSantaMonica = yield getSantaMonica.execute();
+      const data = yield vendasSantaMonica.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`16 Loja Santa Monica - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/17centrovilavelha/GetCentroVilaVelhaServiceVendas.ts
+var GetCentroVilaVelhaVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`73687134000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/17centrovilavelha/GetCentroVilaVelhaControllerVendas.ts
+var GetCentroVilaVelhaControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getCentro = new GetCentroVilaVelhaVendas_Service();
+      const vendasCentro = yield getCentro.execute();
+      const data = yield vendasCentro.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`17 Loja Centro Vila Velha - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/18itapua1/GetItapuaServiceVendas.ts
+var GetItapuaVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44074546000162&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/18itapua1/GetItapuaControllerVendas.ts
+var GetItapuaControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getItapua = new GetItapuaVendas_Service();
+      const vendasItapua = yield getItapua.execute();
+      const data = yield vendasItapua.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`18 Loja Itapu\xE3 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/19amoresaude/GetAmoresSaudeServiceVendas.ts
+var GetAmoresSaudeVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/19amoresaude/GetAmorSaudeControllerVendas.ts
+var GetAmoresSaudeControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getAmorSaude = new GetAmoresSaudeVendas_Service();
+      const vendas = yield getAmorSaude.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default;
+      sheet.workbook.xlsx.writeFile(`19 Loja Amor e Saude - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/20castanheiras/GetCastanheirasServiceVendas.ts
+var GetCastanheirasVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/20castanheiras/GetCastanheirasControllerVendas.ts
+var GetCastanheirasControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      console.log("cheguei");
+      const getCastanheiras = new GetCastanheirasVendas_Service();
+      const vendas = yield getCastanheiras.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`20 Loja Castanheiras - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/21itapua2/GetItapua02ServiceVendas.ts
+var GetItapua02Vendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44074546000162&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/21itapua2/GetItapua02ControllerVendas.ts
+var GetItapua02ControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getItapua02 = new GetItapua02Vendas_Service();
+      const vendas = yield getItapua02.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`21 Loja Itapu\xE3 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/22serra1/GetSerra01ServiceVendas.ts
+var GetSerra01Vendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/22serra1/GetSerra01ControllerVendas.ts
+var GetSerra01ControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getSerra01 = new GetSerra01Vendas_Service();
+      const vendas = yield getSerra01.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`22 Loja Serra 1 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/23serra2/GetSerra02ServiceVendas.ts
+var GetSerra02Vendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/23serra2/GetSerra02ControllerVendas.ts
+var GetSerra02ControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getSerra02 = new GetSerra02Vendas_Service();
+      const vendas = yield getSerra02.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`23 Loja Serra 2 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/24laranjeiras/GetLaranjeirasServiceVendas.ts
+var GetLaranjeirasVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/24laranjeiras/GetLaranjeirasControllerVendas.ts
+var GetLaranjeirasControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getLaranjeiras = new GetLaranjeirasVendas_Service();
+      const vendas = yield getLaranjeiras.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`24 Loja Laranjeiras - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/25terravermelha3/GetTerraVermelha03ServiceVendas.ts
+var GetTerraVermelha03Vendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/25terravermelha3/GetTerraVermelha03ControllerVendas.ts
+var GetTerraVermelha03ControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getTerraVermelha03 = new GetTerraVermelha03Vendas_Service();
+      const vendas = yield getTerraVermelha03.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`25 Loja Terra Vermelha 3 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/26serra/GetSerraServiceVendas.ts
+var GetSerraVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/26serra/GetSerraControllerVendas.ts
+var GetSerraControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getSerra = new GetSerraVendas_Service();
+      const vendas = yield getSerra.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`26 Loja Serra - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/27quatropistas/GetQuatroPistasServiceVendas.ts
+var Get04PistasVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`43095582000140&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/27quatropistas/GetQuatroPistasControllerVendas.ts
+var GetQuatroPistasControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getQuatroPistas = new Get04PistasVendas_Service();
+      const vendas = yield getQuatroPistas.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`27 Loja Quatro Pistas - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/28/GetLoja28ServiceVendas.ts
+var GetLoja28Vendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/28/GetLoja28ControllerVendas.ts
+var GetLoja28ControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getLoja28 = new GetLoja28Vendas_Service();
+      const vendas = yield getLoja28.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`28 Loja - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/29mercadao/GetMercadaoServiceVendas.ts
+var GetMercadaoVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/29mercadao/GetMercadaoControllerVendas.ts
+var GetMercadaoControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getMercadao = new GetMercadaoVendas_Service();
+      const vendas = yield getMercadao.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`29 Loja Mercad\xE3o - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/30laranjeiras3/GetLaranjeiras03ServiceVendas.ts
+var GetLaranjeiras03Vendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/30laranjeiras3/GetLaranjeiras03ControllerVendas.ts
+var GetLaranjeiras03ControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getLaranjeiras03 = new GetLaranjeiras03Vendas_Service();
+      const vendas = yield getLaranjeiras03.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`21 Loja Laranjeiras 3 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/31cariacica/GetCariacicaServiceVendas.ts
+var GetCariacicaVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/31cariacica/GetCariacicaControllerVendas.ts
+var GetCariacicaControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getCariacica = new GetCariacicaVendas_Service();
+      const vendas = yield getCariacica.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`31 Loja Cariacica - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/32alegriacard/GetAlegriaCardServiceVendas.ts
+var GetAlegriaCardVendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/32alegriacard/GetAlegriaCardControllerVendas.ts
+var GetAlegriaCardControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getAlegriaCard = new GetAlegriaCardVendas_Service();
+      const vendas = yield getAlegriaCard.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`32 Loja Alegria Card - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/33cariacica2/GetCariacica02ServiceVendas.ts
+var GetCariacica02Vendas_Service = class {
+  execute() {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/33cariacica2/GetCariacica02ControllerVendas.ts
+var GetCariacica02ControllerVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      const getCariacica02 = new GetCariacica02Vendas_Service();
+      const vendas = yield getCariacica02.execute();
+      const data = yield vendas.data;
+      const lengthData = data.length;
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (let i = 0; i < lengthData; i++) {
+        var nomeV = yield data[i].cliente.nome;
+        nomeV = yield JSON.stringify(nomeV);
+        yield nomeArray.push(nomeV);
+        var numeroV = yield data[i].cliente.telefones;
+        var values = yield Object.values(numeroV[0]);
+        numeroV = yield JSON.stringify(values);
+        numeroV = yield numeroV.replace(/\D/g, "");
+        yield numeroArray.push(numeroV);
+        var emailV = yield data[i].valor_liquido;
+        emailV = yield JSON.stringify(emailV);
+        yield emailArray.push(emailV);
+        sheet.addRow({
+          nome: nomeArray[i],
+          numero: numeroArray[i],
+          email: emailArray[i]
+        });
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`33 Loja Cariacica 2 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relat\xF3rio Criado");
+      return res.json("Fim da Rota");
     });
   }
 };
@@ -710,6 +1882,27 @@ router.get("/vendasAeroporto", new GetAeroportoControllerVendas().ex);
 router.get("/vendasTerraVermelha02", new GetTerraVermelha02ControllerVendas().ex);
 router.get("/vendasUlisses", new GetUlissesControllerVendas().ex);
 router.get("/vendasMarcilio03", new GetMarcilio03ControllerVendas().ex);
+router.get("/vendasBarraMares", new GetBarraMaresControllerVendas().ex);
+router.get("/vendasMatriz", new GetMatrizControllerVendas().ex);
+router.get("/vendasSoteco", new GetSotecoControllerVendas().ex);
+router.get("vendasSantaMonica", new GetSantaMonicaControllerVendas().ex);
+router.get("/vendasCentroVilaVelha", new GetCentroVilaVelhaControllerVendas().ex);
+router.get("/vendasItapua1", new GetItapuaControllerVendas().ex);
+router.get("/vendasAmorSaude", new GetAmoresSaudeControllerVendas().ex);
+router.get("/vendasCastanheiras", new GetCastanheirasControllerVendas().ex);
+router.get("/vendasItapua02", new GetItapua02ControllerVendas().ex);
+router.get("/vendasSerra01", new GetSerra01ControllerVendas().ex);
+router.get("/vendasSerra02", new GetSerra02ControllerVendas().ex);
+router.get("/vendasLaranjeiras", new GetLaranjeirasControllerVendas().ex);
+router.get("/vendasTerraVermelha03", new GetTerraVermelha03ControllerVendas().ex);
+router.get("/vendasSerra", new GetSerraControllerVendas().ex);
+router.get("/vendasQuatroPistas", new GetQuatroPistasControllerVendas().ex);
+router.get("/vendasLoja28", new GetLoja28ControllerVendas().ex);
+router.get("/vendasMercadao", new GetMercadaoControllerVendas().ex);
+router.get("/vendasLaranjeiras03", new GetLaranjeiras03ControllerVendas().ex);
+router.get("/vendasCariacica", new GetCariacicaControllerVendas().ex);
+router.get("/vendasAlegriaCard", new GetAlegriaCardControllerVendas().ex);
+router.get("/vendasCariacica02", new GetCariacica02ControllerVendas().ex);
 
 // src/server/server.ts
 var app = (0, import_express2.default)();
@@ -726,9 +1919,6 @@ app.use((err, req, res, next) => {
     message: "Internal server Error"
   });
 });
-app.listen(
-  3333,
-  () => {
-    console.log("Servidor Rodando!!");
-  }
-);
+app.listen(3333, () => {
+  console.log("Servidor Rodando!!");
+});

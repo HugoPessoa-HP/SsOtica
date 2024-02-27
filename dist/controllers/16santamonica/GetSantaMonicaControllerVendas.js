@@ -50,7 +50,7 @@ var __async = (__this, __arguments, generator) => {
 // src/controllers/16santamonica/GetSantaMonicaControllerVendas.ts
 var GetSantaMonicaControllerVendas_exports = {};
 __export(GetSantaMonicaControllerVendas_exports, {
-  GetMatrizControllerVendas: () => GetMatrizControllerVendas
+  GetSantaMonicaControllerVendas: () => GetSantaMonicaControllerVendas
 });
 module.exports = __toCommonJS(GetSantaMonicaControllerVendas_exports);
 
@@ -65,26 +65,40 @@ var api = import_axios.default.create({
   }
 });
 
-// src/services/14matriz/GetMatrizServiceVendas.ts
+// src/VendasFuncoes/dataAtualizada.ts
 var import_moment = __toESM(require("moment"));
-var GetMatrizVendas_Service = class {
+function dataAtualizada() {
+  return __async(this, null, function* () {
+    let dataAtual = /* @__PURE__ */ new Date();
+    if (dataAtual.getDay() == 1) {
+      const dataAnterior = yield (0, import_moment.default)().subtract(3, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    } else {
+      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      return dataAnterior;
+    }
+  });
+}
+var dataAtualizada_default = dataAtualizada;
+
+// src/services/16santamonica/GetSantaMonicaServiceVendas.ts
+var GetSantaMonicaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
-      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
-      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`44448029000106&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
 };
 
 // src/controllers/16santamonica/GetSantaMonicaControllerVendas.ts
-var import_moment2 = __toESM(require("moment"));
-var GetMatrizControllerVendas = class {
+var GetSantaMonicaControllerVendas = class {
   ex(req, res) {
     return __async(this, null, function* () {
-      const getBarraMares = new GetMatrizVendas_Service();
-      const vendasBarraMares = yield getBarraMares.execute();
-      const data = yield vendasBarraMares.data;
+      const getSantaMonica = new GetSantaMonicaVendas_Service();
+      const vendasSantaMonica = yield getSantaMonica.execute();
+      const data = yield vendasSantaMonica.data;
       const lengthData = data.length;
       const ExcelJS = require("exceljs");
       const workbook = new ExcelJS.Workbook();
@@ -115,14 +129,14 @@ var GetMatrizControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield (0, import_moment2.default)().subtract(1, "days").format("YYYY-MM-DD");
-      sheet.workbook.xlsx.writeFile(`Loja Matriz - Relat\xF3rio de -${dataAnterior}.xlsx`);
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`16 Loja Santa Monica - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
       console.log("Relat\xF3rio Criado");
-      return res.json(data);
+      return res.json("Fim da Rota");
     });
   }
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  GetMatrizControllerVendas
+  GetSantaMonicaControllerVendas
 });
