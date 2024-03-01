@@ -109,11 +109,17 @@ var GetMuquicabaControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield numeroV[0];
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          console.log("Estou Aqui");
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -166,11 +172,17 @@ var GetGuarapariControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield numeroV[0];
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          console.log("Estou Aqui");
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -222,11 +234,17 @@ var GetExpressControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield numeroV[0];
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          console.log("Estou Aqui");
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -278,11 +296,17 @@ var GetMarcilioControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield numeroV[0];
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          console.log("Estou Aqui");
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -334,11 +358,17 @@ var GetShoppingControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield numeroV[0];
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          console.log("Estou Aqui");
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -390,11 +420,17 @@ var GetTerraVermelhaControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield numeroV[0];
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          console.log("Estou Aqui");
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -446,11 +482,16 @@ var GetUlissesControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -502,11 +543,16 @@ var GetMarcilio02ControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield numeroV[0];
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -558,11 +604,16 @@ var GetAeroportoControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var valor = yield numeroV[0];
-        numeroV = yield JSON.stringify(valor);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -614,11 +665,16 @@ var GetTerraVermelha02ControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -670,11 +726,16 @@ var GetMarcilio03ControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -726,11 +787,16 @@ var GetBarraMaresControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -782,11 +848,16 @@ var GetMatrizControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -838,11 +909,16 @@ var GetSotecoControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -894,11 +970,16 @@ var GetSantaMonicaControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -950,11 +1031,16 @@ var GetCentroVilaVelhaControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1006,11 +1092,16 @@ var GetItapuaControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1062,11 +1153,16 @@ var GetAmoresSaudeControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1119,11 +1215,16 @@ var GetCastanheirasControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1175,11 +1276,16 @@ var GetItapua02ControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1231,11 +1337,16 @@ var GetSerra01ControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1287,11 +1398,16 @@ var GetSerra02ControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1343,11 +1459,16 @@ var GetLaranjeirasControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1399,11 +1520,16 @@ var GetTerraVermelha03ControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1455,11 +1581,16 @@ var GetSerraControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1511,11 +1642,16 @@ var GetQuatroPistasControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1567,11 +1703,16 @@ var GetLoja28ControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1623,11 +1764,16 @@ var GetMercadaoControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1679,11 +1825,16 @@ var GetLaranjeiras03ControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1735,11 +1886,16 @@ var GetCariacicaControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1791,11 +1947,16 @@ var GetAlegriaCardControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
@@ -1847,11 +2008,16 @@ var GetCariacica02ControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var values = yield Object.values(numeroV[0]);
-        numeroV = yield JSON.stringify(values);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);

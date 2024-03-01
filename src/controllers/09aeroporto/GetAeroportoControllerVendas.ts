@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { GetAeroportoVendas_Service } from "../../services/09aeroporto/GetAeroportoServiceVendas"; 
 import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
+import verificaNumero from "../../VendasFuncoes/verificaValores";
 
 class GetAeroportoControllerVendas {
     async ex(req: Request, res: Response){
@@ -32,11 +33,18 @@ class GetAeroportoControllerVendas {
             nomeV = await JSON.stringify(nomeV);
             await nomeArray.push(nomeV);
 
-            var numeroV = await data[i].cliente.telefones;
-            var valorInteiro = await numeroV[0];
-            valorInteiro = await JSON.stringify(valorInteiro);
-            const valor = await valorInteiro.replace(/\D/g,'');
-            await numeroArray.push(valor);
+            const numero = await data[i].cliente.telefones;
+            if((numero === null) || (numero === undefined)){
+                var valorNumero = await JSON.stringify(numero);
+                var numeroFinal = "Não informou numero";
+            } else {
+                //console.log("Estou aqui")
+                var primeiroNumero = numero[0]
+                var valorNumero = JSON.stringify(primeiroNumero);
+                var numeroFinal = valorNumero.replace(/\D/g, '');
+            }
+            
+            await numeroArray.push(numeroFinal);
 
             var emailV = await data[i].valor_liquido;
             emailV = await JSON.stringify(emailV);
@@ -52,7 +60,7 @@ class GetAeroportoControllerVendas {
 
         const dataAnterior = await dataAtualizada();
         sheet.workbook.xlsx.writeFile(`09 Loja Aeroporto - Relatório de Vendas - ${dataAnterior}.xlsx`)
-        console.log("Relatorio-Criado")
+        console.log("Relatorio-Criado");
         return res.json("Fim da Rota");
     }
 }

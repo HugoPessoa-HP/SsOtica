@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GetMuquicabaVendas_Service } from "../../services/01muquicaba/GetMuquicabaServiceVendas";
-import dataAtualizada from "../../VendasFuncoes/dataAtualizada"
+import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetMuquicabaControllerVendas {
     async ex(req: Request, res: Response){
@@ -32,11 +32,18 @@ class GetMuquicabaControllerVendas {
             nomeV = await JSON.stringify(nomeV);
             await nomeArray.push(nomeV);
 
-            var numeroV = await data[i].cliente.telefones;
-            var values = await numeroV[0]
-            numeroV = await JSON.stringify(values);
-            numeroV = await numeroV.replace(/\D/g,'');
-            await numeroArray.push(numeroV);
+            const numero = await data[i].cliente.telefones;
+            if((numero === null) || (numero === undefined)){
+                var valorNumero = await JSON.stringify(numero);
+                var numeroFinal = "Não informou numero";
+            } else {
+                //console.log("Estou aqui")
+                var primeiroNumero = numero[0]
+                var valorNumero = JSON.stringify(primeiroNumero);
+                var numeroFinal = valorNumero.replace(/\D/g, '');
+            }
+            
+            await numeroArray.push(numeroFinal);
 
             var emailV = await data[i].valor_liquido;
             emailV = await JSON.stringify(emailV);

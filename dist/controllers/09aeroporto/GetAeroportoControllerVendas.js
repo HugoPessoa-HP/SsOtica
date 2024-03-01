@@ -115,11 +115,16 @@ var GetAeroportoControllerVendas = class {
         var nomeV = yield data[i].cliente.nome;
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
-        var numeroV = yield data[i].cliente.telefones;
-        var valor = yield numeroV[0];
-        numeroV = yield JSON.stringify(valor);
-        numeroV = yield numeroV.replace(/\D/g, "");
-        yield numeroArray.push(numeroV);
+        const numero = yield data[i].cliente.telefones;
+        var primeiroNumero = numero[0];
+        if (primeiroNumero != null || primeiroNumero != void 0) {
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
+        } else {
+          var valorNumero = yield JSON.stringify(numero);
+          var numeroFinal = "N\xE3o informou numero";
+        }
+        yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
         emailV = yield JSON.stringify(emailV);
         yield emailArray.push(emailV);
