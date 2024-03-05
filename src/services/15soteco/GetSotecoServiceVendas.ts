@@ -5,7 +5,7 @@ class GetSotecoVendas_Service{
     async execute(){
 
         const dataAnterior = await dataAtualizada();
-        const vendas = await api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+        const vendas = await api.get(`43229630000145&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
 
         return vendas;
     }

@@ -5,7 +5,7 @@ class GetAeroportoVendas_Service{
     async execute(){
 
         const dataAnterior = await dataAtualizada();
-        const vendas = await api.get(`40254669000124&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+        const vendas = await api.get(`44447899001051&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
 
         return vendas;
     }

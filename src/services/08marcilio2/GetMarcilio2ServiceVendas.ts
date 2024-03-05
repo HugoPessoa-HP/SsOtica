@@ -5,7 +5,7 @@ class GetMarcilio02Vendas_Service{
     async execute(){
 
         const dataAnterior = await dataAtualizada();
-        const vendas = await api.get(`45517253000175&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+        const vendas = await api.get(`44447899001485&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
 
         return vendas;
     }

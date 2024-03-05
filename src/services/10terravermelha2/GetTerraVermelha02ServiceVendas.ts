@@ -5,7 +5,7 @@ class GetTerraVermelha02Vendas_Service{
     async execute(){
 
         const dataAnterior = await dataAtualizada();
-        const vendas = await api.get(`40248658000131&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+        const vendas = await api.get(`66286213000130&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
 
         return vendas;
     }
