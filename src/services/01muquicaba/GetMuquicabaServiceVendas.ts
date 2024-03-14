@@ -1,5 +1,7 @@
 import { api } from "../../API";
 import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
+import { compare } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
 
 class GetMuquicabaVendas_Service{
     async execute(){

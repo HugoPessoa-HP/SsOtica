@@ -57,7 +57,7 @@ class GetAmoresSaudeControllerVendas {
 
         }
 
-        const dataAnterior = await dataAtualizada
+        const dataAnterior = await dataAtualizada();
         sheet.workbook.xlsx.writeFile(`19 Loja Amor e Saude - Relatório de Vendas - ${dataAnterior}.xlsx`)
         console.log("Relatório Criado")
         return res.json("Fim da Rota");

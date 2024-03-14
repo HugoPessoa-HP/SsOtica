@@ -86,7 +86,7 @@ var GetTerraVermelha02Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`40248658000131&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`66286213000130&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -116,13 +116,13 @@ var GetTerraVermelha02ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;

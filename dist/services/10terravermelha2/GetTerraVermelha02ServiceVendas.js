@@ -86,7 +86,7 @@ var GetTerraVermelha02Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`40248658000131&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`66286213000130&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }

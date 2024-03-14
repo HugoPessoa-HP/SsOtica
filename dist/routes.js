@@ -87,7 +87,7 @@ var GetMuquicabaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`33879704000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899000918&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -117,14 +117,13 @@ var GetMuquicabaControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          console.log("Estou Aqui");
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -149,7 +148,7 @@ var GetGuarapariVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899000837&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -180,14 +179,13 @@ var GetGuarapariControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          console.log("Estou Aqui");
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -212,7 +210,7 @@ var GetExpressVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899000594&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -242,14 +240,13 @@ var GetExpressControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          console.log("Estou Aqui");
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -274,7 +271,7 @@ var GetMarcilioVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`39892855000100&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899001566&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -304,14 +301,13 @@ var GetMarcilioControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          console.log("Estou Aqui");
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -336,7 +332,7 @@ var GetShoppingVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`39402286000177&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899001302&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -366,14 +362,13 @@ var GetShoppingControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          console.log("Estou Aqui");
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -428,14 +423,13 @@ var GetTerraVermelhaControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          console.log("Estou Aqui");
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -490,13 +484,13 @@ var GetUlissesControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -521,7 +515,7 @@ var GetMarcilio02Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`45517253000175&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899001485&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -551,13 +545,13 @@ var GetMarcilio02ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -582,7 +576,7 @@ var GetAeroportoVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`40254669000124&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899001051&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -612,13 +606,13 @@ var GetAeroportoControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -643,7 +637,7 @@ var GetTerraVermelha02Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`40248658000131&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`66286213000130&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -673,13 +667,13 @@ var GetTerraVermelha02ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -704,7 +698,7 @@ var GetMarcilio03Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899001728&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -734,13 +728,13 @@ var GetMarcilio03ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -795,13 +789,13 @@ var GetBarraMaresControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -856,13 +850,13 @@ var GetMatrizControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -887,7 +881,7 @@ var GetSotecoVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`43229630000145&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -917,13 +911,13 @@ var GetSotecoControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -978,13 +972,13 @@ var GetSantaMonicaControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1009,7 +1003,7 @@ var GetCentroVilaVelhaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`73687134000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`43687134000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1039,13 +1033,13 @@ var GetCentroVilaVelhaControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1070,7 +1064,7 @@ var GetItapuaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44074546000162&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899001809&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1100,13 +1094,13 @@ var GetItapuaControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1161,13 +1155,13 @@ var GetAmoresSaudeControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1179,7 +1173,7 @@ var GetAmoresSaudeControllerVendas = class {
           email: emailArray[i]
         });
       }
-      const dataAnterior = yield dataAtualizada_default;
+      const dataAnterior = yield dataAtualizada_default();
       sheet.workbook.xlsx.writeFile(`19 Loja Amor e Saude - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
       console.log("Relat\xF3rio Criado");
       return res.json("Fim da Rota");
@@ -1192,7 +1186,7 @@ var GetCastanheirasVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899000756&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1223,13 +1217,13 @@ var GetCastanheirasControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1254,7 +1248,7 @@ var GetItapua02Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44074546000162&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`48019477000145&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1284,13 +1278,13 @@ var GetItapua02ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1315,7 +1309,7 @@ var GetSerra01Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899000403&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1345,13 +1339,13 @@ var GetSerra01ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1376,7 +1370,7 @@ var GetSerra02Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899000675&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1406,13 +1400,13 @@ var GetSerra02ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1437,7 +1431,7 @@ var GetLaranjeirasVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899000322&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1467,13 +1461,13 @@ var GetLaranjeirasControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1498,7 +1492,7 @@ var GetTerraVermelha03Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`89982746000151&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1528,13 +1522,13 @@ var GetTerraVermelha03ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1559,7 +1553,7 @@ var GetSerraVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899000241&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1589,13 +1583,13 @@ var GetSerraControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1620,7 +1614,7 @@ var Get04PistasVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`43095582000140&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899001213&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1650,13 +1644,13 @@ var GetQuatroPistasControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1681,7 +1675,7 @@ var GetLoja28Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899001647&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1711,13 +1705,13 @@ var GetLoja28ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1742,7 +1736,7 @@ var GetMercadaoVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44690704000109&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899001132&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1772,13 +1766,13 @@ var GetMercadaoControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1803,7 +1797,7 @@ var GetLaranjeiras03Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`83214449000180&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1833,13 +1827,13 @@ var GetLaranjeiras03ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1864,7 +1858,7 @@ var GetCariacicaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`82677480000194&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1894,13 +1888,13 @@ var GetCariacicaControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1925,7 +1919,7 @@ var GetAlegriaCardVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`29132921000190&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -1955,13 +1949,13 @@ var GetAlegriaCardControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -1986,7 +1980,7 @@ var GetCariacica02Vendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44447899000160&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`03034259000141&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }
@@ -2016,13 +2010,13 @@ var GetCariacica02ControllerVendas = class {
         nomeV = yield JSON.stringify(nomeV);
         yield nomeArray.push(nomeV);
         const numero = yield data[i].cliente.telefones;
-        var primeiroNumero = numero[0];
-        if (primeiroNumero != null || primeiroNumero != void 0) {
-          var valorNumero = JSON.stringify(primeiroNumero);
-          var numeroFinal = valorNumero.replace(/\D/g, "");
-        } else {
+        if (numero === null || numero === void 0) {
           var valorNumero = yield JSON.stringify(numero);
           var numeroFinal = "N\xE3o informou numero";
+        } else {
+          var primeiroNumero = numero[0];
+          var valorNumero = JSON.stringify(primeiroNumero);
+          var numeroFinal = valorNumero.replace(/\D/g, "");
         }
         yield numeroArray.push(numeroFinal);
         var emailV = yield data[i].valor_liquido;
@@ -2038,6 +2032,115 @@ var GetCariacica02ControllerVendas = class {
       sheet.workbook.xlsx.writeFile(`33 Loja Cariacica 2 - Relat\xF3rio de Vendas - ${dataAnterior}.xlsx`);
       console.log("Relat\xF3rio Criado");
       return res.json("Fim da Rota");
+    });
+  }
+};
+
+// src/services/TodosOsServices/GetVendas.ts
+var GetVendasService = class {
+  execute(lojaCNPJ) {
+    return __async(this, null, function* () {
+      const dataAnterior = yield dataAtualizada_default();
+      const vendas = yield api.get(`${lojaCNPJ}&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      return vendas;
+    });
+  }
+};
+
+// src/controllers/TodosOsControllers/GetVendasController.ts
+var GetGeralVendas = class {
+  ex(req, res) {
+    return __async(this, null, function* () {
+      console.log("Estou Aqui");
+      const ExcelJS = require("exceljs");
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("Relatorio");
+      sheet.columns = [
+        { header: "nome", key: "nome" },
+        { header: "numero", key: "numero" },
+        { header: "email", key: "email" }
+      ];
+      const arrayCNPJ = [
+        "44447899000918",
+        "44447899000837",
+        "44447899000594",
+        "44447899001566",
+        "44447899001302",
+        "40248658000131",
+        "44447899001485",
+        "44447899001051",
+        "66286213000130",
+        "40926713000103",
+        "44447899001728",
+        "44447899000160",
+        "43229630000145",
+        "44447899001809",
+        "44690704000109",
+        "44447899000756",
+        "48019477000145",
+        "44447899000403",
+        "44447899000675",
+        "44447899000322",
+        "89982746000151",
+        "44447899000241",
+        "44447899001213",
+        "44447899001647",
+        "44447899001132",
+        "83214449000180",
+        "82677480000194",
+        "29132921000190",
+        "48940172000171",
+        "74449580000135",
+        "03034259000141"
+      ];
+      const arraylength = arrayCNPJ.length;
+      var i, j;
+      var nomeArray = [];
+      var numeroArray = [];
+      var emailArray = [];
+      for (i = 0; i < arraylength; i++) {
+        const getVendas = new GetVendasService();
+        const vendas = yield getVendas.execute(arrayCNPJ[0]);
+        const data = yield vendas.data;
+        const lengthData = data.length;
+        for (let j2 = 0; j2 < lengthData; j2++) {
+          const nome = yield data[i].cliente.nome;
+          if (nome === null || nome === void 0) {
+            var nomeFinal = "N\xE3o informou nome";
+          } else {
+            var nomeFinal = JSON.stringify(nome);
+          }
+          yield nomeArray.push(nomeFinal);
+          console.log(nomeFinal);
+          const numero = yield data[i].cliente.telefones;
+          if (numero === null || numero === void 0) {
+            var numeroFinal = "N\xE3o informou n\xFAmero";
+          } else {
+            var primeiroNumero = numero[0];
+            var valorNumero = JSON.stringify(primeiroNumero);
+            var numeroFinal = valorNumero.replace(/\D/g, "");
+          }
+          yield numeroArray.push(numeroFinal);
+          console.log(numeroFinal);
+          const email = yield data[i].valor_liquido;
+          if (email === null || email === void 0) {
+            var emailFinal = "N\xE3o informou email";
+          } else {
+            var emailFinal = yield JSON.stringify(email);
+          }
+          yield emailArray.push(emailFinal);
+          console.log(emailFinal);
+          sheet.addRow({
+            nome: nomeArray[i],
+            numero: numeroArray[i],
+            email: emailArray[i]
+          });
+        }
+      }
+      const dataAnterior = yield dataAtualizada_default();
+      sheet.workbook.xlsx.writeFile(`Relat\xF3rio Geral de Vendas - ${dataAnterior}.xlsx`);
+      console.log("Relatorio Criado");
+      return res.json("Fim da Rota!");
     });
   }
 };
@@ -2076,6 +2179,7 @@ router.get("/vendasLaranjeiras03", new GetLaranjeiras03ControllerVendas().ex);
 router.get("/vendasCariacica", new GetCariacicaControllerVendas().ex);
 router.get("/vendasAlegriaCard", new GetAlegriaCardControllerVendas().ex);
 router.get("/vendasCariacica02", new GetCariacica02ControllerVendas().ex);
+router.get("/vendasGeral", new GetGeralVendas().ex);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   router

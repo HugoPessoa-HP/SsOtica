@@ -86,7 +86,7 @@ var GetCentroVilaVelhaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`73687134000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`43687134000135&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }

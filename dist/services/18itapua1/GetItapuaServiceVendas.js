@@ -86,7 +86,7 @@ var GetItapuaVendas_Service = class {
   execute() {
     return __async(this, null, function* () {
       const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`44074546000162&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
+      const vendas = yield api.get(`44447899001809&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
       return vendas;
     });
   }

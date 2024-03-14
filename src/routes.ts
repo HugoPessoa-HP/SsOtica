@@ -31,6 +31,7 @@ import { GetLaranjeiras03ControllerVendas } from './controllers/30laranjeiras3/G
 import { GetCariacicaControllerVendas } from './controllers/31cariacica/GetCariacicaControllerVendas';
 import { GetAlegriaCardControllerVendas } from './controllers/32alegriacard/GetAlegriaCardControllerVendas';
 import { GetCariacica02ControllerVendas } from './controllers/33cariacica2/GetCariacica02ControllerVendas';
+import { GetGeralVendas } from './controllers/TodosOsControllers/GetVendasController';
 
 const router = Router();
 
@@ -66,5 +67,6 @@ router.get('/vendasLaranjeiras03', new GetLaranjeiras03ControllerVendas().ex)
 router.get('/vendasCariacica', new GetCariacicaControllerVendas().ex)
 router.get('/vendasAlegriaCard', new GetAlegriaCardControllerVendas().ex)
 router.get('/vendasCariacica02', new GetCariacica02ControllerVendas().ex)
+router.get('/vendasGeral', new GetGeralVendas().ex)
 
 export { router }
