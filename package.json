@@ -5,9 +5,9 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev src/server/server.ts",
+    "dev": "ts-node-dev src/server.ts",
     "build": "tsup src",
-    "start": "node dist/server/server.js"
+    "start": "node dist/server.js"
   },
   "author": "Hugo Pessoa <hphugopessoa@outlook.com>",
   "license": "ISC",

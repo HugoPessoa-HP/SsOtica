@@ -1,0 +1,9 @@
+version: 2.20.3
+
+app: 
+  build: .
+  container_name: api_SsOtica
+  ports: 
+    3003:3003
+  volumes:
+    .:/usr/app

@@ -61,3 +61,7 @@ $ npm install tsup
 Instalar Tsx para rodar a aplicação
 
 $ npm install tsx
+
+Instalar JsonWebToken
+
+$ npm install jsonwebtoken
