@@ -116,6 +116,7 @@ var GetGeralVendas = class {
         "44447899001485",
         "44447899001051",
         "66286213000130",
+        "43687134000135",
         "44447899001728",
         "44447899000160",
         "43229630000145",
@@ -123,6 +124,9 @@ var GetGeralVendas = class {
         "44690704000109",
         "44447899000756",
         "48019477000145",
+        "03034259000141",
+        "74449580000135",
+        "48940172000171",
         "44447899000403",
         "44447899000675",
         "44447899000322",
@@ -132,10 +136,7 @@ var GetGeralVendas = class {
         "44447899001132",
         "83214449000180",
         "82677480000194",
-        "29132921000190",
-        "48940172000171",
-        "74449580000135",
-        "03034259000141"
+        "29132921000190"
       ];
       const arraylength = arrayCNPJ.length;
       var i, j, v;
@@ -150,7 +151,7 @@ var GetGeralVendas = class {
         const lengthData = data.length;
         for (j = 0; j < lengthData; j++) {
           const nome = yield data[j].cliente.nome;
-          if (nome === null || nome === void 0) {
+          if (nome == null || nome == void 0) {
             var nomeFinal = "N\xE3o informou nome";
             console.log(nomeFinal);
           } else {
@@ -169,7 +170,7 @@ var GetGeralVendas = class {
           yield numeroArray.push(numeroFinal);
           console.log(numeroFinal);
           const email = yield data[j].valor_liquido;
-          if (email === null || email === void 0) {
+          if (email == null || email == void 0) {
             var emailFinal = "N\xE3o informou email";
           } else {
             var emailFinal = yield JSON.stringify(email);

@@ -1,4 +1,4 @@
-import moment from 'moment';    
+import moment from 'moment';
 
 async function dataAtualizada(){
     let dataAtual = new Date();
@@ -12,4 +12,3 @@ async function dataAtualizada(){
 }
 
 export default dataAtualizada
-

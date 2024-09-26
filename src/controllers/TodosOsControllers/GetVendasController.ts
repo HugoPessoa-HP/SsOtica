@@ -4,11 +4,10 @@ import dataAtualizada from "../../VendasFuncoes/dataAtualizada";
 
 class GetGeralVendas {
     async ex(req: Request, res: Response){
-        console.log("Estou Aqui");
         const ExcelJS = require('exceljs');
         const workbook = new ExcelJS.Workbook();
 
-        const sheet = workbook.addWorksheet('Relatorio')
+        const sheet = workbook.addWorksheet('Relatorio');
 
         sheet.columns = [
             { header: 'nome', key: 'nome' },
@@ -16,12 +15,7 @@ class GetGeralVendas {
             { header: 'email', key:'email' }
         ]
 
-        const arrayCNPJ = ['44447899000918', '44447899000837', '44447899000594', '44447899001566', '44447899001302',
-                           '40248658000131', '44447899001485', '44447899001051', '66286213000130','43687134000135',
-                           '44447899001728', '44447899000160', '43229630000145', '44447899001809', '44690704000109',
-                           '44447899000756', '48019477000145', '03034259000141', '74449580000135', '48940172000171',
-                           '44447899000403', '44447899000675', '44447899000322', '89982746000151', '44447899000241',
-                           '44447899001213', '44447899001132', '83214449000180', '82677480000194', '29132921000190'];
+        const arrayCNPJ = ['Digitar CNPJ das Lojas para funcionar'];
    
         const arraylength = arrayCNPJ.length;
 
@@ -42,14 +36,12 @@ class GetGeralVendas {
             for(j = 0; j < lengthData; j++){
                 
                 const nome = await data[j].cliente.nome;
-                if((nome == null) || (nome == undefined)){
+                if((nome == null) || (nome == undefined) || (nome == '')){
                     var nomeFinal = "Não informou nome";
-                    console.log(nomeFinal)
                 } else {
                     var nomeFinal = JSON.stringify(nome);
                 }
                 await nomeArray.push(nomeFinal);
-                console.log(nomeFinal)
 
 
                 const numero = await data[j].cliente.telefones;
@@ -62,7 +54,6 @@ class GetGeralVendas {
                     var numeroFinal = valorNumero.replace(/\D/g, '');
                 }
                 await numeroArray.push(numeroFinal);
-                console.log(numeroFinal)
 
                 
                 const email = await data[j].valor_liquido;
@@ -72,7 +63,6 @@ class GetGeralVendas {
                     var emailFinal = await JSON.stringify(email);
                 }
                 await emailArray.push(emailFinal);
-                console.log(emailFinal)
             }
 
         }
@@ -87,7 +77,7 @@ class GetGeralVendas {
                 })
         }
         const dataAnterior = await dataAtualizada();
-        sheet.workbook.xlsx.writeFile(`Relatório Geral de Vendas - ${dataAnterior}.xlsx`)
+        sheet.workbook.xlsx.writeFile(`Relatório Geral de Vendas - ${dataAnterior}.xlsx`);
         console.log("Relatorio Criado");
         return res.json("Fim da Rota!");
     }
