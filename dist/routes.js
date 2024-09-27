@@ -62,143 +62,107 @@ var tokenV = JSON.stringify(token);
 var api = import_axios.default.create({
   baseURL: "https://app.ssotica.com.br/api/v1/integracoes/vendas/periodo?cnpj=",
   headers: {
-    "Authorization": `Bearer KyhmIwwbbttTtiTynlrPKkyla0wOWxNDKBuqBbgka3xGTdOsniwagsqVIISi`
+    "Authorization": `Bearer ${tokenV}`
   }
 });
 
-// src/VendasFuncoes/dataAtualizada.ts
+// src/SalesFunction/updatedDate.ts
 var import_moment = __toESM(require("moment"));
-function dataAtualizada() {
+function updatedDate() {
   return __async(this, null, function* () {
-    let dataAtual = /* @__PURE__ */ new Date();
-    if (dataAtual.getDay() == 1) {
-      const dataAnterior = yield (0, import_moment.default)().subtract(3, "days").format("YYYY-MM-DD");
-      return dataAnterior;
+    let currentDate = /* @__PURE__ */ new Date();
+    if (currentDate.getDay() == 1) {
+      const previousDate = yield (0, import_moment.default)().subtract(3, "days").format("YYYY-MM-DD");
+      return previousDate;
     } else {
-      const dataAnterior = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
-      return dataAnterior;
+      const previousDate = yield (0, import_moment.default)().subtract(1, "days").format("YYYY-MM-DD");
+      return previousDate;
     }
   });
 }
-var dataAtualizada_default = dataAtualizada;
+var updatedDate_default = updatedDate;
 
-// src/services/TodosOsServices/GetVendas.ts
-var GetVendasService = class {
-  execute(lojaCNPJ) {
+// src/services/AllServices/GetSales.ts
+var GetSalesService = class {
+  execute(store_CNPJ) {
     return __async(this, null, function* () {
-      const dataAnterior = yield dataAtualizada_default();
-      const vendas = yield api.get(`${lojaCNPJ}&inicio_periodo=${dataAnterior}&fim_periodo=${dataAnterior}`);
-      return vendas;
+      const previousdate = yield updatedDate_default();
+      const sales = yield api.get(`${store_CNPJ}&inicio_periodo=${previousdate}&fim_periodo=${previousdate}`);
+      return sales;
     });
   }
 };
 
-// src/controllers/TodosOsControllers/GetVendasController.ts
-var GetGeralVendas = class {
+// src/controllers/AllControllers/GetVendasController.ts
+var GetSalesController = class {
   ex(req, res) {
     return __async(this, null, function* () {
-      console.log("Estou Aqui");
       const ExcelJS = require("exceljs");
       const workbook = new ExcelJS.Workbook();
-      const sheet = workbook.addWorksheet("Relatorio");
+      const sheet = workbook.addWorksheet("Relat\xF3rio");
       sheet.columns = [
-        { header: "nome", key: "nome" },
-        { header: "numero", key: "numero" },
-        { header: "email", key: "email" }
+        { header: "Nome", key: "nome" },
+        { header: "Numero", key: "numero" },
+        { header: "Email", key: "email" }
       ];
-      const arrayCNPJ = [
-        "44447899000918",
-        "44447899000837",
-        "44447899000594",
-        "44447899001566",
-        "44447899001302",
-        "40248658000131",
-        "44447899001485",
-        "44447899001051",
-        "66286213000130",
-        "43687134000135",
-        "44447899001728",
-        "44447899000160",
-        "43229630000145",
-        "44447899001809",
-        "44690704000109",
-        "44447899000756",
-        "48019477000145",
-        "03034259000141",
-        "74449580000135",
-        "48940172000171",
-        "44447899000403",
-        "44447899000675",
-        "44447899000322",
-        "89982746000151",
-        "44447899000241",
-        "44447899001213",
-        "44447899001132",
-        "83214449000180",
-        "82677480000194",
-        "29132921000190"
-      ];
+      const arrayCNPJ = ["Enter the stores CNPJ to run"];
       const arraylength = arrayCNPJ.length;
       var i, j, v;
-      var nomeArray = [];
-      var numeroArray = [];
+      var nameArray = [];
+      var numberArray = [];
       var emailArray = [];
       for (i = 0; i < arraylength; i++) {
         console.log(i);
-        const getVendas = new GetVendasService();
-        const vendas = yield getVendas.execute(arrayCNPJ[i]);
-        const data = yield vendas.data;
+        const getSales = new GetSalesService();
+        const sales = yield getSales.execute(arrayCNPJ[i]);
+        const data = yield sales.data;
         const lengthData = data.length;
         for (j = 0; j < lengthData; j++) {
-          const nome = yield data[j].cliente.nome;
-          if (nome == null || nome == void 0) {
-            var nomeFinal = "N\xE3o informou nome";
-            console.log(nomeFinal);
+          const name = yield data[j].cliente.nome;
+          if (name == null || name == void 0 || name == "") {
+            var finalName = "N\xE3o informou nome";
           } else {
-            var nomeFinal = JSON.stringify(nome);
+            var finalName = JSON.stringify(name);
           }
-          yield nomeArray.push(nomeFinal);
-          console.log(nomeFinal);
-          const numero = yield data[j].cliente.telefones;
-          if (numero == null || numero == void 0 || numero == "") {
-            var numeroFinal = "N\xE3o informou n\xFAmero";
+          yield nameArray.push(finalName);
+          const number = yield data[j].cliente.telefones;
+          if (number == null || number == void 0 || number == "") {
+            var finalNumber = "N\xE3o informou n\xFAmero";
           } else {
-            var primeiroNumero = numero[0];
-            var valorNumero = JSON.stringify(primeiroNumero);
-            var numeroFinal = valorNumero.replace(/\D/g, "");
+            var firstNumber = number[0];
+            var valueNumber = JSON.stringify(firstNumber);
+            var finalNumber = valueNumber.replace(/\D/g, "");
           }
-          yield numeroArray.push(numeroFinal);
-          console.log(numeroFinal);
+          yield numberArray.push(finalNumber);
           const email = yield data[j].valor_liquido;
           if (email == null || email == void 0) {
-            var emailFinal = "N\xE3o informou email";
+            var finalEmail = "N\xE3o informou email";
           } else {
-            var emailFinal = yield JSON.stringify(email);
+            var finalEmail = yield JSON.stringify(email);
           }
-          yield emailArray.push(emailFinal);
-          console.log(emailFinal);
+          yield emailArray.push(finalEmail);
         }
       }
-      const valoresLength = nomeArray.length;
-      console.log(valoresLength);
-      for (v = 0; v < valoresLength; v++) {
+      const valuesLength = nameArray.length;
+      console.log(valuesLength);
+      for (v = 0; v < valuesLength; v++) {
         sheet.addRow({
-          nome: nomeArray[v],
-          numero: numeroArray[v],
+          nome: nameArray[v],
+          numero: numberArray[v],
           email: emailArray[v]
         });
       }
-      const dataAnterior = yield dataAtualizada_default();
-      sheet.workbook.xlsx.writeFile(`Relat\xF3rio Geral de Vendas - ${dataAnterior}.xlsx`);
-      console.log("Relatorio Criado");
-      return res.json("Fim da Rota!");
+      const previousDate = yield updatedDate_default();
+      sheet.workbook.xlsx.writeFile(`Relat\xF3rio Geral de Vendas - ${previousDate}.xlsx`);
+      console.log("Created");
+      return res.json("Fim da RotaEnd of the Route!");
     });
   }
 };
 
 // src/routes.ts
 var router = (0, import_express.Router)();
-router.get("/vendasGeral", new GetGeralVendas().ex);
+router.get("/Sales", new GetSalesController().ex);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   router

@@ -50,23 +50,23 @@ var __async = (__this, __arguments, generator) => {
 // src/API-Google-Sheets.ts
 var API_Google_Sheets_exports = {};
 __export(API_Google_Sheets_exports, {
-  SalvarVendas: () => SalvarVendas
+  SalesSave: () => SalesSave
 });
 module.exports = __toCommonJS(API_Google_Sheets_exports);
 var import_axios = __toESM(require("axios"));
-var SalvarVendas = class {
-  salvarVendas(_0) {
-    return __async(this, arguments, function* ({ nome, numeroMudado, email }) {
-      yield import_axios.default.post("https://sheetdb.io/api/v1/bo6z9p6sxriyi", {
+var SalesSave = class {
+  salesSave(_0) {
+    return __async(this, arguments, function* ({ name, number, email }) {
+      yield import_axios.default.post("https://sheetdb.io/api/v1/exemplo", {
         "data": {
-          "nome": nome,
-          "numero": numeroMudado,
+          "nome": name,
+          "numero": number,
           "email": email
         }
       }, {
         "auth": {
-          "username": "ywlesyn2",
-          "password": "zaf3rnvarz6a5ei61jth"
+          "username": "username",
+          "password": "password"
         }
       });
     });
@@ -74,5 +74,5 @@ var SalvarVendas = class {
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  SalvarVendas
+  SalesSave
 });

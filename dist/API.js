@@ -39,7 +39,7 @@ var tokenV = JSON.stringify(token);
 var api = import_axios.default.create({
   baseURL: "https://app.ssotica.com.br/api/v1/integracoes/vendas/periodo?cnpj=",
   headers: {
-    "Authorization": `Bearer KyhmIwwbbttTtiTynlrPKkyla0wOWxNDKBuqBbgka3xGTdOsniwagsqVIISi`
+    "Authorization": `Bearer ${tokenV}`
   }
 });
 // Annotate the CommonJS export names for ESM import in node:

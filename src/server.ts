@@ -8,7 +8,6 @@ app.use(router);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     if(err instanceof Error){
-        // Se for uma instância do tipo Error
         return res.status(400).json({
             error: err.message
         })
@@ -21,5 +20,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 })
 
 app.listen(3003, () => {
-    console.log("Servidor Rodando!!")
+    console.log("Server running!!");
 })

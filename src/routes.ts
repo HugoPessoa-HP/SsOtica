@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express'
 
-import { GetGeralVendas } from './controllers/TodosOsControllers/GetVendasController';
+import { GetSalesController } from './controllers/AllControllers/GetVendasController';
 
 const router = Router();
 
-router.get('/vendasGeral', new GetGeralVendas().ex)
+router.get('/Sales', new GetSalesController().ex)
 
 export { router }
